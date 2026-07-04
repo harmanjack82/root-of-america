@@ -1,0 +1,6 @@
+{
+  "name": "Roots Of America",
+  "description": "A premium USA-registered B2B supply-chain, wholesale, and enterprise commerce platform, delivering authentic American-grown and crafted goods with custom logistics, wholesale pricing calculators, and RFQ engines.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
