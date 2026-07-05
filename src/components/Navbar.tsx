@@ -22,8 +22,8 @@ import { RfqItem } from '../types';
 interface NavbarProps {
   rfqCount: number;
   onOpenRfq: () => void;
-  activeView: 'landing' | 'dashboard' | 'trade-desk' | 'about-us';
-  setActiveView: (view: 'landing' | 'dashboard' | 'trade-desk' | 'about-us') => void;
+  activeView: 'landing' | 'dashboard' | 'trade-desk' | 'about-us' | 'disclaimer' | 'refund-policy' | 'privacy-policy' | 'terms-of-trade';
+  setActiveView: (view: 'landing' | 'dashboard' | 'trade-desk' | 'about-us' | 'disclaimer' | 'refund-policy' | 'privacy-policy' | 'terms-of-trade') => void;
   onScrollTo: (elementId: string) => void;
 }
 
@@ -121,7 +121,7 @@ export default function Navbar({
                 className="relative bg-[#0e4a36] hover:bg-[#0b3c2a] text-[#faf8f5] px-5 py-2.5 rounded-xl font-sans font-semibold text-sm transition-all flex items-center space-x-2 shadow-md hover:shadow-lg"
               >
                 <FileSpreadsheet className="h-4 w-4" />
-                <span>Bulk RFQ</span>
+                <span>Advertise With Us</span>
                 {rfqCount > 0 ? (
                   <span className="bg-[#f59e0b] text-[#1c2421] text-xs font-extrabold h-5 w-5 rounded-full flex items-center justify-center animate-bounce">
                     {rfqCount}

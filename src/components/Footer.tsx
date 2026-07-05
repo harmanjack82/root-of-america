@@ -13,10 +13,11 @@ import {
 
 interface FooterProps {
   onScrollTo: (elementId: string) => void;
-  setActiveView: (view: 'landing' | 'dashboard' | 'trade-desk' | 'about-us') => void;
+  setActiveView: (view: 'landing' | 'dashboard' | 'trade-desk' | 'about-us' | 'disclaimer' | 'refund-policy' | 'privacy-policy' | 'terms-of-trade') => void;
+  setDisclaimerSection?: (section: string | undefined) => void;
 }
 
-export default function Footer({ onScrollTo, setActiveView }: FooterProps) {
+export default function Footer({ onScrollTo, setActiveView, setDisclaimerSection }: FooterProps) {
   const currentYear = new Date().getFullYear();
 
   return (
@@ -78,17 +79,33 @@ export default function Footer({ onScrollTo, setActiveView }: FooterProps) {
                 </button>
               </li>
               <li>
-                <button onClick={() => onScrollTo('lumber-section')} className="hover:text-white transition-colors cursor-pointer">
+                <button 
+                  onClick={() => {
+                    if (setDisclaimerSection) setDisclaimerSection('website-disclaimer');
+                    setActiveView('disclaimer');
+                  }} 
+                  className="hover:text-white transition-colors cursor-pointer"
+                >
                   Disclaimer
                 </button>
               </li>
               <li>
-                <button onClick={() => onScrollTo('fiber-section')} className="hover:text-white transition-colors cursor-pointer">
+                <button 
+                  onClick={() => {
+                    setActiveView('refund-policy');
+                  }} 
+                  className="hover:text-white transition-colors cursor-pointer"
+                >
                   Refund Policy
                 </button>
               </li>
               <li>
-                <button onClick={() => onScrollTo('bio-section')} className="hover:text-white transition-colors cursor-pointer">
+                <button 
+                  onClick={() => {
+                    setActiveView('privacy-policy');
+                  }} 
+                  className="hover:text-white transition-colors cursor-pointer"
+                >
                   Privacy Policy
                 </button>
               </li>
@@ -157,7 +174,13 @@ export default function Footer({ onScrollTo, setActiveView }: FooterProps) {
         <div className="mt-12 pt-8 border-t border-gray-800 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs font-mono">
           <p>© {currentYear} Roots Of America Inc. All wholesale trade rights reserved.</p>
           <div className="flex space-x-6 text-gray-500">
-            <a href="#" className="hover:text-white transition-colors">Terms of Trade</a>
+            <button 
+              id="terms-of-trade-footer-btn"
+              onClick={() => setActiveView('terms-of-trade')} 
+              className="hover:text-white transition-colors cursor-pointer focus:outline-none"
+            >
+              Terms of Trade
+            </button>
           </div>
         </div>
 

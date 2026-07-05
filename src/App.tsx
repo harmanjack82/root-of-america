@@ -26,6 +26,10 @@ import Footer from './components/Footer';
 import DashboardSim from './components/DashboardSim';
 import GlobalTradeHub from './components/GlobalTradeHub';
 import AboutUs from './components/AboutUs';
+import Disclaimer from './components/Disclaimer';
+import RefundPolicyPage from './components/RefundPolicyPage';
+import PrivacyPolicyPage from './components/PrivacyPolicyPage';
+import TermsOfTradePage from './components/TermsOfTradePage';
 import bannerImg from './assets/images/b2b_supply_chain_banner_1783159950805.jpg';
 
 import { Product, RfqItem } from './types';
@@ -34,7 +38,8 @@ import { B2B_TESTIMONIALS } from './data';
 export default function App() {
   const [rfqItems, setRfqItems] = useState<RfqItem[]>([]);
   const [isRfqOpen, setIsRfqOpen] = useState<boolean>(false);
-  const [activeView, setActiveView] = useState<'landing' | 'dashboard' | 'trade-desk' | 'about-us'>('landing');
+  const [activeView, setActiveView] = useState<'landing' | 'dashboard' | 'trade-desk' | 'about-us' | 'disclaimer' | 'refund-policy' | 'privacy-policy' | 'terms-of-trade'>('landing');
+  const [disclaimerSection, setDisclaimerSection] = useState<string | undefined>(undefined);
   const [showScrollTop, setShowScrollTop] = useState<boolean>(false);
   const [currentTestimonialIdx, setCurrentTestimonialIdx] = useState<number>(0);
 
@@ -319,6 +324,49 @@ export default function App() {
           >
             <AboutUs onBack={() => setActiveView('landing')} />
           </motion.div>
+        ) : activeView === 'disclaimer' ? (
+          <motion.div
+            key="disclaimer-view"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            <Disclaimer onBack={() => {
+              setActiveView('landing');
+              setDisclaimerSection(undefined);
+            }} defaultSection={disclaimerSection} />
+          </motion.div>
+        ) : activeView === 'refund-policy' ? (
+          <motion.div
+            key="refund-policy-view"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            <RefundPolicyPage onBack={() => setActiveView('landing')} />
+          </motion.div>
+        ) : activeView === 'privacy-policy' ? (
+          <motion.div
+            key="privacy-policy-view"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            <PrivacyPolicyPage onBack={() => setActiveView('landing')} />
+          </motion.div>
+        ) : activeView === 'terms-of-trade' ? (
+          <motion.div
+            key="terms-of-trade-view"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            <TermsOfTradePage onBack={() => setActiveView('landing')} />
+          </motion.div>
         ) : (
           <motion.div
             key="dashboard-view"
@@ -347,6 +395,7 @@ export default function App() {
       <Footer 
         onScrollTo={handleScrollTo}
         setActiveView={setActiveView}
+        setDisclaimerSection={setDisclaimerSection}
       />
 
       {/* Floating Scroll to Top button */}
