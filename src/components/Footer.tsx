@@ -73,8 +73,8 @@ export default function Footer({ onScrollTo, setActiveView }: FooterProps) {
             <h4 className="text-xs font-mono font-bold text-white uppercase tracking-widest border-b border-gray-800 pb-2">Quick Links</h4>
             <ul className="space-y-2.5 text-sm">
               <li>
-                <button onClick={() => onScrollTo('ag-section')} className="hover:text-white transition-colors cursor-pointer">
-                  Organic Crops
+                <button onClick={() => onScrollTo('hero-section')} className="hover:text-white transition-colors cursor-pointer">
+                  About Us
                 </button>
               </li>
               <li>
