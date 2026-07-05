@@ -79,17 +79,17 @@ export default function Footer({ onScrollTo, setActiveView }: FooterProps) {
               </li>
               <li>
                 <button onClick={() => onScrollTo('lumber-section')} className="hover:text-white transition-colors cursor-pointer">
-                  Hardwood Timber
+                  Disclaimer
                 </button>
               </li>
               <li>
                 <button onClick={() => onScrollTo('fiber-section')} className="hover:text-white transition-colors cursor-pointer">
-                  Natural Fibers
+                  Refund Policy
                 </button>
               </li>
               <li>
                 <button onClick={() => onScrollTo('bio-section')} className="hover:text-white transition-colors cursor-pointer">
-                  Bio-Materials
+                  Privacy Policy
                 </button>
               </li>
             </ul>
@@ -148,17 +148,7 @@ export default function Footer({ onScrollTo, setActiveView }: FooterProps) {
             <p className="text-xs text-gray-500 leading-relaxed">
               Roots of America is a Delaware registered C-Corporation in good standing. All materials comply with Section 102 of US Sourcing Standards.
             </p>
-            <div className="flex space-x-3 pt-2">
-              <a href="#" className="p-2 bg-gray-800 hover:bg-gray-700 text-white rounded-lg transition-colors">
-                <Linkedin className="h-4 w-4" />
-              </a>
-              <a href="#" className="p-2 bg-gray-800 hover:bg-gray-700 text-white rounded-lg transition-colors">
-                <Github className="h-4 w-4" />
-              </a>
-              <a href="#" className="p-2 bg-gray-800 hover:bg-gray-700 text-white rounded-lg transition-colors">
-                <Globe2 className="h-4 w-4" />
-              </a>
-            </div>
+
           </div>
 
         </div>
@@ -168,9 +158,6 @@ export default function Footer({ onScrollTo, setActiveView }: FooterProps) {
           <p>© {currentYear} Roots Of America Inc. All wholesale trade rights reserved.</p>
           <div className="flex space-x-6 text-gray-500">
             <a href="#" className="hover:text-white transition-colors">Terms of Trade</a>
-            <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
-            <a href="#" className="hover:text-white transition-colors">FOB Agreements</a>
-            <a href="#" className="hover:text-white transition-colors">Sitemap</a>
           </div>
         </div>
 
