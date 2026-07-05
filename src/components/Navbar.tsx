@@ -22,8 +22,8 @@ import { RfqItem } from '../types';
 interface NavbarProps {
   rfqCount: number;
   onOpenRfq: () => void;
-  activeView: 'landing' | 'dashboard' | 'trade-desk';
-  setActiveView: (view: 'landing' | 'dashboard' | 'trade-desk') => void;
+  activeView: 'landing' | 'dashboard' | 'trade-desk' | 'about-us';
+  setActiveView: (view: 'landing' | 'dashboard' | 'trade-desk' | 'about-us') => void;
   onScrollTo: (elementId: string) => void;
 }
 

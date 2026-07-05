@@ -25,6 +25,7 @@ import RfqDrawer from './components/RfqDrawer';
 import Footer from './components/Footer';
 import DashboardSim from './components/DashboardSim';
 import GlobalTradeHub from './components/GlobalTradeHub';
+import AboutUs from './components/AboutUs';
 import bannerImg from './assets/images/b2b_supply_chain_banner_1783159950805.jpg';
 
 import { Product, RfqItem } from './types';
@@ -33,7 +34,7 @@ import { B2B_TESTIMONIALS } from './data';
 export default function App() {
   const [rfqItems, setRfqItems] = useState<RfqItem[]>([]);
   const [isRfqOpen, setIsRfqOpen] = useState<boolean>(false);
-  const [activeView, setActiveView] = useState<'landing' | 'dashboard' | 'trade-desk'>('landing');
+  const [activeView, setActiveView] = useState<'landing' | 'dashboard' | 'trade-desk' | 'about-us'>('landing');
   const [showScrollTop, setShowScrollTop] = useState<boolean>(false);
   const [currentTestimonialIdx, setCurrentTestimonialIdx] = useState<number>(0);
 
@@ -307,6 +308,16 @@ export default function App() {
             transition={{ duration: 0.3 }}
           >
             <GlobalTradeHub onBack={() => setActiveView('landing')} />
+          </motion.div>
+        ) : activeView === 'about-us' ? (
+          <motion.div
+            key="about-us-view"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            <AboutUs onBack={() => setActiveView('landing')} />
           </motion.div>
         ) : (
           <motion.div
