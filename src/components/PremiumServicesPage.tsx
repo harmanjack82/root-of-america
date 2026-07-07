@@ -263,7 +263,11 @@ export default function PremiumServicesPage({ onBack }: PremiumServicesPageProps
           <div className="space-y-16 max-w-7xl mx-auto w-full">
             
             {/* 1. Standard Verified Widescreen Section */}
-            <div className={`bg-white rounded-3xl p-8 sm:p-12 border-2 transition-all shadow-sm ${selectedPlan === 'standard' ? 'border-[#0e4a36] ring-4 ring-[#0e4a36]/5' : 'border-[#e5dfd3] hover:shadow-md'}`}>
+            <div className={`rounded-3xl p-8 sm:p-12 border-2 transition-all duration-500 shadow-sm ${
+              selectedPlan === 'standard' 
+                ? 'bg-gradient-to-br from-[#daf0e9] via-[#f4faf8] to-white border-[#0e4a36] ring-8 ring-[#0e4a36]/10 shadow-xl shadow-emerald-800/5' 
+                : 'bg-gradient-to-br from-[#f2fbf8] to-[#fafdfc] border-[#d1ebe2] hover:border-[#0e4a36]/40 hover:shadow-md'
+            }`}>
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-stretch">
                 
                 {/* Standard Info Column */}
@@ -356,7 +360,11 @@ export default function PremiumServicesPage({ onBack }: PremiumServicesPageProps
                 </div>
 
                 {/* Standard Services Board */}
-                <div className="lg:col-span-7 bg-[#faf8f5] p-8 rounded-3xl border border-[#e5dfd3]/60 flex flex-col justify-between space-y-8">
+                <div className={`lg:col-span-7 p-8 rounded-3xl border transition-all duration-500 flex flex-col justify-between space-y-8 ${
+                  selectedPlan === 'standard' 
+                    ? 'bg-gradient-to-br from-[#c8e6dd]/40 to-white/90 border-[#0e4a36]/20 shadow-xs' 
+                    : 'bg-[#e2f5ee]/40 border-[#b2e2d3]/40 shadow-xs'
+                }`}>
                   <div>
                     <div className="flex items-center space-x-2.5 mb-6">
                       <Sparkles className="h-5 w-5 text-[#0e4a36]" />
@@ -517,7 +525,11 @@ export default function PremiumServicesPage({ onBack }: PremiumServicesPageProps
             </div>
 
             {/* 2. Gold Premium VIP Sourcing Center (Best Value Stack) */}
-            <div className={`bg-white rounded-3xl p-8 sm:p-12 border-2 transition-all shadow-md relative overflow-hidden ${selectedPlan === 'gold' ? 'border-amber-500 ring-4 ring-amber-500/10' : 'border-[#e5dfd3] hover:shadow-lg'}`}>
+            <div className={`rounded-3xl p-8 sm:p-12 border-2 transition-all duration-500 relative overflow-hidden ${
+              selectedPlan === 'gold' 
+                ? 'bg-gradient-to-br from-[#fef3c7] via-[#fffbeb] to-white border-amber-500 shadow-2xl ring-8 ring-amber-500/15 shadow-amber-500/10' 
+                : 'bg-gradient-to-br from-[#fffdf5] via-[#fffbeb] to-white border-amber-200 hover:border-amber-500/50 hover:shadow-lg'
+            }`}>
               <div className="absolute -right-16 -top-16 bg-amber-500/10 h-64 w-64 rounded-full blur-2xl pointer-events-none"></div>
               
               {/* Premium Choice Top Badge */}
@@ -637,7 +649,11 @@ export default function PremiumServicesPage({ onBack }: PremiumServicesPageProps
                 </div>
 
                 {/* Gold Services Board */}
-                <div className="lg:col-span-7 bg-[#faf8f5] p-8 rounded-3xl border border-amber-200 flex flex-col justify-between space-y-8">
+                <div className={`lg:col-span-7 p-8 rounded-3xl border transition-all duration-500 flex flex-col justify-between space-y-8 ${
+                  selectedPlan === 'gold' 
+                    ? 'bg-gradient-to-br from-amber-100/40 to-white/90 border-amber-300 shadow-xs' 
+                    : 'bg-[#fffbeb]/90 border-amber-200/60 shadow-xs'
+                }`}>
                   <div>
                     <div className="flex items-center space-x-2.5 mb-6">
                       <Crown className="h-5 w-5 text-amber-500" />
@@ -775,7 +791,11 @@ export default function PremiumServicesPage({ onBack }: PremiumServicesPageProps
             </div>
 
             {/* 3. Enterprise Elite Widescreen Section */}
-            <div className={`bg-white rounded-3xl p-8 sm:p-12 border-2 transition-all shadow-sm ${selectedPlan === 'elite' ? 'border-emerald-600 ring-4 ring-emerald-600/5' : 'border-[#e5dfd3] hover:shadow-md'}`}>
+            <div className={`rounded-3xl p-8 sm:p-12 border-2 transition-all duration-500 shadow-sm ${
+              selectedPlan === 'elite' 
+                ? 'bg-gradient-to-br from-[#d1fae5] via-[#f0fdf4] to-white border-emerald-600 ring-8 ring-emerald-600/15 shadow-2xl shadow-emerald-600/10' 
+                : 'bg-gradient-to-br from-[#f0fdf4] to-[#fcfdfd] border-emerald-200 hover:border-emerald-600/50 hover:shadow-md'
+            }`}>
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-stretch">
                 
                 {/* Elite Info Column */}
@@ -884,7 +904,11 @@ export default function PremiumServicesPage({ onBack }: PremiumServicesPageProps
                 </div>
 
                 {/* Elite Services Board */}
-                <div className="lg:col-span-7 bg-[#faf8f5] p-8 rounded-3xl border border-emerald-200 flex flex-col justify-between space-y-8">
+                <div className={`lg:col-span-7 p-8 rounded-3xl border transition-all duration-500 flex flex-col justify-between space-y-8 ${
+                  selectedPlan === 'elite' 
+                    ? 'bg-gradient-to-br from-emerald-100/40 to-white/90 border-emerald-300 shadow-xs' 
+                    : 'bg-[#e6fbf0]/60 border-emerald-200/50 shadow-xs'
+                }`}>
                   <div>
                     <div className="flex items-center space-x-2.5 mb-6">
                       <Globe2 className="h-5 w-5 text-emerald-600" />
