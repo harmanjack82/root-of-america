@@ -15,15 +15,17 @@ import {
   Users2,
   Lock,
   ArrowRight,
-  ArrowLeft
+  ArrowLeft,
+  Crown,
+  Sparkles
 } from 'lucide-react';
 import { RfqItem } from '../types';
 
 interface NavbarProps {
   rfqCount: number;
   onOpenRfq: () => void;
-  activeView: 'landing' | 'dashboard' | 'trade-desk' | 'about-us' | 'disclaimer' | 'refund-policy' | 'privacy-policy' | 'terms-of-trade';
-  setActiveView: (view: 'landing' | 'dashboard' | 'trade-desk' | 'about-us' | 'disclaimer' | 'refund-policy' | 'privacy-policy' | 'terms-of-trade') => void;
+  activeView: 'landing' | 'dashboard' | 'trade-desk' | 'about-us' | 'disclaimer' | 'refund-policy' | 'privacy-policy' | 'terms-of-trade' | 'premium-services';
+  setActiveView: (view: 'landing' | 'dashboard' | 'trade-desk' | 'about-us' | 'disclaimer' | 'refund-policy' | 'privacy-policy' | 'terms-of-trade' | 'premium-services') => void;
   onScrollTo: (elementId: string) => void;
 }
 
@@ -110,22 +112,15 @@ export default function Navbar({
                 <span>Back to Home</span>
               </button>
             )}
-            {/* Active RFQ Basket Trigger */}
+            {/* Active RFQ Basket Trigger replaced with Premium Services redirect */}
             {activeView === 'landing' && (
               <button
                 id="nav-rfq-basket"
-                onClick={onOpenRfq}
-                className="relative bg-[#0e4a36] hover:bg-[#0b3c2a] text-[#faf8f5] px-5 py-2.5 rounded-xl font-sans font-semibold text-sm transition-all flex items-center space-x-2 shadow-md hover:shadow-lg"
+                onClick={() => setActiveView('premium-services')}
+                className="relative bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-[#1c2421] px-5 py-2.5 rounded-xl font-sans font-bold text-sm transition-all flex items-center space-x-2 shadow-md hover:shadow-lg border border-amber-400/40 cursor-pointer"
               >
-                <FileSpreadsheet className="h-4 w-4" />
-                <span>Advertise With Us</span>
-                {rfqCount > 0 ? (
-                  <span className="bg-[#f59e0b] text-[#1c2421] text-xs font-extrabold h-5 w-5 rounded-full flex items-center justify-center animate-bounce">
-                    {rfqCount}
-                  </span>
-                ) : (
-                  <span className="text-[10px] text-[#faf8f5]/60 font-mono">0</span>
-                )}
+                <Crown className="h-4 w-4 text-[#1c2421]" />
+                <span>Premium Services</span>
               </button>
             )}
           </div>
@@ -134,15 +129,11 @@ export default function Navbar({
           <div className="flex items-center md:hidden space-x-2">
             {activeView === 'landing' && (
               <button
-                onClick={onOpenRfq}
-                className="relative p-2.5 bg-[#0e4a36]/10 text-[#0e4a36] rounded-xl"
+                onClick={() => setActiveView('premium-services')}
+                className="relative p-2.5 bg-amber-500/10 text-amber-600 rounded-xl hover:bg-amber-500/20 transition-all cursor-pointer"
+                title="Premium B2B Services"
               >
-                <FileSpreadsheet className="h-5 w-5" />
-                {rfqCount > 0 && (
-                  <span className="absolute -top-1 -right-1 bg-[#f59e0b] text-[#1c2421] text-[10px] font-extrabold h-4.5 w-4.5 rounded-full flex items-center justify-center">
-                    {rfqCount}
-                  </span>
-                )}
+                <Crown className="h-5 w-5" />
               </button>
             )}
             <button
@@ -205,6 +196,13 @@ export default function Navbar({
                   >
                     <ShieldCheck className="h-4 w-4 text-[#0e4a36]" />
                     <span>Cargo Compliance</span>
+                  </button>
+                  <button 
+                    onClick={() => { setIsOpen(false); setActiveView('premium-services'); }} 
+                    className="block w-full text-left px-3 py-2 text-base font-medium text-[#1c2421] hover:bg-[#faf8f5] rounded-xl flex items-center space-x-1.5"
+                  >
+                    <Crown className="h-4 w-4 text-amber-500" />
+                    <span className="font-bold text-amber-600">Premium B2B Services</span>
                   </button>
                 </>
               ) : (

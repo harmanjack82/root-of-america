@@ -30,6 +30,7 @@ import Disclaimer from './components/Disclaimer';
 import RefundPolicyPage from './components/RefundPolicyPage';
 import PrivacyPolicyPage from './components/PrivacyPolicyPage';
 import TermsOfTradePage from './components/TermsOfTradePage';
+import PremiumServicesPage from './components/PremiumServicesPage';
 import bannerImg from './assets/images/b2b_supply_chain_banner_1783159950805.jpg';
 
 import { Product, RfqItem } from './types';
@@ -38,7 +39,7 @@ import { B2B_TESTIMONIALS } from './data';
 export default function App() {
   const [rfqItems, setRfqItems] = useState<RfqItem[]>([]);
   const [isRfqOpen, setIsRfqOpen] = useState<boolean>(false);
-  const [activeView, setActiveView] = useState<'landing' | 'dashboard' | 'trade-desk' | 'about-us' | 'disclaimer' | 'refund-policy' | 'privacy-policy' | 'terms-of-trade'>('landing');
+  const [activeView, setActiveView] = useState<'landing' | 'dashboard' | 'trade-desk' | 'about-us' | 'disclaimer' | 'refund-policy' | 'privacy-policy' | 'terms-of-trade' | 'premium-services'>('landing');
   const [disclaimerSection, setDisclaimerSection] = useState<string | undefined>(undefined);
   const [showScrollTop, setShowScrollTop] = useState<boolean>(false);
   const [currentTestimonialIdx, setCurrentTestimonialIdx] = useState<number>(0);
@@ -366,6 +367,16 @@ export default function App() {
             transition={{ duration: 0.3 }}
           >
             <TermsOfTradePage onBack={() => setActiveView('landing')} />
+          </motion.div>
+        ) : activeView === 'premium-services' ? (
+          <motion.div
+            key="premium-services-view"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            <PremiumServicesPage onBack={() => setActiveView('landing')} />
           </motion.div>
         ) : (
           <motion.div
