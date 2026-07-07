@@ -179,7 +179,7 @@ export default function App() {
             <FeatureGrid />
 
             {/* Premium B2B Procurement Banner */}
-            <div className="py-8 bg-[#faf8f5] border-b border-[#e5dfd3]">
+            <div className="pt-4 pb-8 bg-[#faf8f5] border-b border-[#e5dfd3]">
               <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="bg-[#1c2421] text-white rounded-3xl p-6 sm:p-8 border border-[#e5dfd3] shadow-lg relative overflow-hidden flex flex-col lg:flex-row items-center justify-between gap-6">
                   {/* Full Size Background Image */}

@@ -36,7 +36,7 @@ export default function FeatureGrid() {
   ];
 
   return (
-    <section id="features-section" className="py-20 bg-white border-y border-[#e5dfd3]">
+    <section id="features-section" className="pt-20 pb-10 bg-white border-y border-[#e5dfd3]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header Block */}

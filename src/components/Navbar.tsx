@@ -89,9 +89,6 @@ export default function Navbar({
 
           {/* Desktop Navigation removed as per user selection */}
           <div className="hidden md:flex items-center">
-            {activeView !== 'landing' && (
-              <span className="text-sm text-gray-500">Authorized: Apex Woodcraft</span>
-            )}
           </div>
 
           {/* Action Button Controls */}
