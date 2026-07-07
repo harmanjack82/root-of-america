@@ -103,7 +103,7 @@ export default function WholesaleCalculator({ onAddRfqWithQty }: CalculatorProps
   };
 
   return (
-    <section id="calculator-section" className="py-10 bg-white border-b border-[#e5dfd3]">
+    <section id="calculator-section" className="py-16 bg-gradient-to-b from-[#fbf9f4] via-[#f5ede0] to-[#e8ddc4] border-b border-[#e5dfd3] relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header Title */}
@@ -120,7 +120,7 @@ export default function WholesaleCalculator({ onAddRfqWithQty }: CalculatorProps
         </div>
 
         {/* Calculator Widget */}
-        <div className="bg-[#faf8f5] rounded-3xl border border-[#e5dfd3] shadow-lg overflow-hidden grid grid-cols-1 lg:grid-cols-12">
+        <div className="bg-gradient-to-br from-white via-[#fcfbfa] to-[#faf8f6] rounded-3xl border border-[#e5dfd3] shadow-lg overflow-hidden grid grid-cols-1 lg:grid-cols-12">
           
           {/* Controls Panel (Left) */}
           <div className="lg:col-span-7 p-6 sm:p-10 border-b lg:border-b-0 lg:border-r border-[#e5dfd3] space-y-8 text-left">

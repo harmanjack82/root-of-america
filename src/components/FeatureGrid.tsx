@@ -36,7 +36,7 @@ export default function FeatureGrid() {
   ];
 
   return (
-    <section id="features-section" className="pt-20 pb-10 bg-white border-y border-[#e5dfd3]">
+    <section id="features-section" className="pt-20 pb-10 bg-gradient-to-b from-[#fbf9f4] via-[#f7f3e8] to-[#eedfb8]/20 border-y border-[#e5dfd3] relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header Block */}
@@ -61,7 +61,7 @@ export default function FeatureGrid() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: idx * 0.1 }}
-              className="relative p-6 bg-[#faf8f5] rounded-3xl border border-[#e5dfd3] hover:border-[#0e4a36] hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group"
+              className="relative p-6 bg-gradient-to-br from-white to-[#f5f1e5] rounded-3xl border border-[#e5dfd3] hover:border-[#0e4a36] hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group"
             >
               <div className="space-y-4 text-left">
                 {/* Icon Circle */}

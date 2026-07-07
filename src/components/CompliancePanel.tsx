@@ -85,7 +85,7 @@ export default function CompliancePanel() {
   ];
 
   return (
-    <section id="tax-section" className="py-20 bg-[#faf8f5] border-b border-[#e5dfd3]">
+    <section id="tax-section" className="py-20 bg-gradient-to-b from-[#fbf9f4] via-[#f5ede0] to-[#e8ddc4] border-b border-[#e5dfd3] relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Universal Category Coverage Declaration */}
@@ -200,7 +200,7 @@ export default function CompliancePanel() {
 
           {/* Right Interactive Container */}
           <div className="lg:col-span-7">
-            <div className="bg-white rounded-3xl border border-[#e5dfd3] shadow-xl p-6 sm:p-10 relative overflow-hidden">
+            <div className="bg-gradient-to-br from-white via-[#fcfaf7] to-[#faf7f0] rounded-3xl border border-[#e5dfd3] shadow-xl p-6 sm:p-10 relative overflow-hidden">
               <div className="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-[#0e4a36] via-[#f59e0b] to-[#0e4a36]" />
 
               <div className="space-y-6 text-left">

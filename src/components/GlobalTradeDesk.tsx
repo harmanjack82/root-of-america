@@ -549,7 +549,7 @@ export default function GlobalTradeDesk({ onExploreMore }: GlobalTradeDeskProps 
   const currentCurrency = CURRENCY_CONVERSION[selectedTargetCurrency];
 
   return (
-    <section id="global-trade-desk-section" className="py-16 bg-white border-b border-[#e5dfd3]">
+    <section id="global-trade-desk-section" className="py-20 bg-gradient-to-br from-[#faf8f5] via-[#f5edd7] to-[#e4d8bc] border-b border-[#e5dfd3] relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header Title */}
@@ -680,7 +680,7 @@ export default function GlobalTradeDesk({ onExploreMore }: GlobalTradeDeskProps 
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.95 }}
                 transition={{ duration: 0.25 }}
-                className={`bg-white border rounded-2xl p-5 flex flex-col justify-between shadow-sm hover:shadow-md transition-all relative overflow-hidden ${
+                className={`bg-gradient-to-b from-white to-[#fcfaf7] border rounded-2xl p-5 flex flex-col justify-between shadow-sm hover:shadow-md hover:border-[#0e4a36]/40 transition-all relative overflow-hidden ${
                   item.type === 'buyer' 
                     ? 'border-l-4 border-l-[#0e4a36] border-[#e5dfd3]' 
                     : 'border-l-4 border-l-amber-500 border-[#e5dfd3]'

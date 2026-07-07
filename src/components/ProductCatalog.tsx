@@ -59,7 +59,7 @@ export default function ProductCatalog({ onAddToRfq, addedProductIds }: ProductC
   };
 
   return (
-    <section id="sourcing-catalog-section" className="py-10 bg-[#faf8f5]">
+    <section id="sourcing-catalog-section" className="py-16 bg-gradient-to-br from-[#faf8f5] via-[#f5edd7] to-[#e4d8bc] border-b border-[#e5dfd3] relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header Block */}
@@ -116,7 +116,7 @@ export default function ProductCatalog({ onAddToRfq, addedProductIds }: ProductC
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.95 }}
                   transition={{ duration: 0.3 }}
-                  className="bg-white rounded-3xl border border-[#e5dfd3] overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col group"
+                  className="bg-gradient-to-b from-white to-[#fcfbfa] rounded-3xl border border-[#e5dfd3] overflow-hidden shadow-sm hover:shadow-xl hover:border-[#0e4a36]/50 transition-all duration-300 flex flex-col group"
                 >
                   {/* Category Section & Image */}
                   <div className="relative h-48 overflow-hidden bg-gray-100">

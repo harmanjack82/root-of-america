@@ -150,7 +150,7 @@ export default function App() {
             />
 
             {/* Social Trust Brands Bar */}
-            <section className="bg-white border-y border-[#e5dfd3] py-8 overflow-hidden">
+            <section className="bg-gradient-to-r from-[#faf8f5] via-[#f4ebd4] to-[#faf8f5] border-y border-[#e5dfd3] py-8 overflow-hidden">
               <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
                 <p className="text-[10px] font-mono font-bold tracking-widest uppercase text-gray-400">
                   Trusted by Registered US Industrial buyers
@@ -251,7 +251,7 @@ export default function App() {
             <CompliancePanel />
 
             {/* BigCommerce Testimonials Replica */}
-            <section className="py-20 bg-white border-b border-[#e5dfd3] relative overflow-hidden">
+            <section className="py-24 bg-gradient-to-br from-[#faf8f5] via-[#faf8f5] to-[#eedfb8]/30 border-b border-[#e5dfd3] relative overflow-hidden">
               {/* Decorative Quote Mark */}
               <div className="absolute top-10 left-10 text-gray-100 font-serif text-[180px] leading-none pointer-events-none select-none">
                 “
