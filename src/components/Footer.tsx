@@ -19,9 +19,10 @@ interface FooterProps {
 
 export default function Footer({ onScrollTo, setActiveView, setDisclaimerSection }: FooterProps) {
   const currentYear = new Date().getFullYear();
+  const [isExpanded, setIsExpanded] = React.useState(false);
 
   return (
-    <footer className="bg-[#1c2421] text-gray-400 font-sans border-t-8 border-[#0e4a36]">
+    <footer id="footer" className="bg-[#1c2421] text-gray-400 font-sans border-t-8 border-[#0e4a36]">
       
       {/* Upper Certifications Bar */}
       <div className="bg-[#0e4a36] py-6 text-white text-xs border-b border-[#135d44]">
@@ -50,10 +51,36 @@ export default function Footer({ onScrollTo, setActiveView, setDisclaimerSection
               </div>
               <span className="font-bold tracking-wider text-lg">ROOTS OF AMERICA</span>
             </div>
-            <p className="text-sm text-gray-400 leading-relaxed">
-              Powering the backbone of US manufacturing and sustainable enterprise through highly standardized, traceable wholesale commodity pipelines. Licensed in all 50 states for commercial freight and intermodal shipping.
-            </p>
-            <div className="space-y-2.5 text-xs font-mono">
+            
+            <div className="space-y-3">
+              <p className="text-sm text-gray-400 leading-relaxed">
+                At Rootofamerica, we are committed to helping businesses expand their reach, strengthen their online presence, and connect with genuine buyers and sellers worldwide. Our goal is to provide businesses with the tools, opportunities, and support they need to grow faster and more efficiently in today's competitive marketplace.
+              </p>
+              {isExpanded && (
+                <div className="space-y-3 pt-1">
+                  <p className="text-sm text-gray-400 leading-relaxed">
+                    Rootofamerica offers professional business solutions, digital promotion services, and valuable networking opportunities that help organizations establish a strong market presence. We believe that the success of our clients reflects our own success, which is why we focus on building long-term relationships based on trust, transparency, and mutual growth.
+                  </p>
+                  <p className="text-sm text-gray-400 leading-relaxed">
+                    As a leading B2B business platform, Rootofamerica serves as a bridge between buyers and suppliers across various industries. We provide a secure and reliable environment where businesses can showcase their products and services, generate quality inquiries, and explore new business opportunities globally. Our dedicated support team is available to assist users and ensure a seamless experience throughout their business journey.
+                  </p>
+                  <p className="text-sm text-gray-400 leading-relaxed">
+                    With extensive experience in the B2B industry, Rootofamerica continues to empower businesses by offering innovative solutions that simplify trade and promote sustainable growth. We strive to create a marketplace where buyers and sellers can connect, collaborate, and conduct business confidently and effectively.
+                  </p>
+                  <p className="text-sm text-gray-400 leading-relaxed">
+                    Our vision is to provide every business with maximum exposure to national and international markets while helping them build valuable industry connections. We aim to become a trusted destination where entrepreneurs, manufacturers, exporters, suppliers, and service providers can fulfill all their business requirements under one platform.
+                  </p>
+                </div>
+              )}
+              <button
+                onClick={() => setIsExpanded(!isExpanded)}
+                className="text-xs font-mono font-bold uppercase tracking-wider text-[#f59e0b] hover:text-amber-400 transition-colors flex items-center space-x-1 mt-2 focus:outline-none cursor-pointer"
+              >
+                <span>{isExpanded ? 'View Less' : 'View More'}</span>
+              </button>
+            </div>
+
+            <div className="space-y-2.5 text-xs font-mono pt-2">
               <div className="flex items-center space-x-2">
                 <MapPin className="h-4 w-4 text-amber-500" />
                 <span>100 S. Wacker Drive, Chicago, IL 60606, USA</span>
@@ -126,12 +153,6 @@ export default function Footer({ onScrollTo, setActiveView, setDisclaimerSection
                   Cargo Compliance
                 </button>
               </li>
-              <li>
-                <span className="text-gray-600 line-through">REST API Docs</span>
-              </li>
-              <li>
-                <span className="text-gray-600 line-through">EDI Connection</span>
-              </li>
             </ul>
           </div>
 
@@ -150,12 +171,6 @@ export default function Footer({ onScrollTo, setActiveView, setDisclaimerSection
                   RFQ Drafting
                 </button>
               </li>
-              <li>
-                <span className="text-gray-600">Carrier Registry</span>
-              </li>
-              <li>
-                <span className="text-gray-600">FOB Port Logs</span>
-              </li>
             </ul>
           </div>
 
@@ -172,7 +187,7 @@ export default function Footer({ onScrollTo, setActiveView, setDisclaimerSection
 
         {/* Lower row */}
         <div className="mt-12 pt-8 border-t border-gray-800 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs font-mono">
-          <p>© {currentYear} Roots Of America Inc. All wholesale trade rights reserved.</p>
+          <p>@2026 Roots Of America Inc. All Business rights reserved.</p>
           <div className="flex space-x-6 text-gray-500">
             <button 
               id="terms-of-trade-footer-btn"

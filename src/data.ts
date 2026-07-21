@@ -175,7 +175,7 @@ export const MOCK_ORDERS: MockPurchaseOrder[] = [
       { productName: 'Long-Staple American Pima Cotton', quantity: 30, totalCost: 20400 }
     ],
     totalAmount: 20400,
-    status: 'Delivered',
+    status: 'In Transit',
     trackingNumber: 'ROA-US-661208-C'
   },
   {
@@ -185,7 +185,7 @@ export const MOCK_ORDERS: MockPurchaseOrder[] = [
       { productName: 'Premium Hard Red Winter Wheat', quantity: 60, totalCost: 22800 }
     ],
     totalAmount: 22800,
-    status: 'Delivered',
+    status: 'In Transit',
     trackingNumber: 'ROA-US-554129-F'
   }
 ];

@@ -18,6 +18,8 @@ interface HeroProps {
 }
 
 export default function Hero({ onStartCalculator, onBrowseSourcing }: HeroProps) {
+  const [isExpanded, setIsExpanded] = React.useState(false);
+
   return (
     <section id="hero-section" className="relative bg-gradient-to-br from-[#faf8f5] via-[#f5edd7] to-[#e6dbbf] overflow-hidden pt-6 pb-20 md:pt-14 md:pb-20">
       {/* Abstract Background Accents */}
@@ -54,9 +56,33 @@ export default function Hero({ onStartCalculator, onBrowseSourcing }: HeroProps)
                   <span className="absolute left-0 bottom-1.5 w-full h-1 bg-[#f59e0b] rounded-full" />
                 </span> Supply Chain Engine.
               </h1>
-              <p className="text-base sm:text-lg text-gray-600 leading-relaxed max-w-xl">
-                Universal B2B wholesaling and clearing for physical commodities—including agriculture, sustainable hardwoods, natural textile fibers, metals, and eco-packaging. Fully state-cleared with strict zero-tolerance exclusions against regulated pharmaceuticals, narcotics, or weapons.
-              </p>
+              <div className="space-y-4 max-w-xl text-left">
+                <p className="text-base sm:text-lg text-gray-600 leading-relaxed">
+                  At Rootofamerica, we are committed to helping businesses expand their reach, strengthen their online presence, and connect with genuine buyers and sellers worldwide. Our goal is to provide businesses with the tools, opportunities, and support they need to grow faster and more efficiently in today's competitive marketplace.
+                </p>
+                {isExpanded && (
+                  <div className="space-y-4 pt-1">
+                    <p className="text-sm text-gray-500 leading-relaxed">
+                      Rootofamerica offers professional business solutions, digital promotion services, and valuable networking opportunities that help organizations establish a strong market presence. We believe that the success of our clients reflects our own success, which is why we focus on building long-term relationships based on trust, transparency, and mutual growth.
+                    </p>
+                    <p className="text-sm text-gray-500 leading-relaxed">
+                      As a leading B2B business platform, Rootofamerica serves as a bridge between buyers and suppliers across various industries. We provide a secure and reliable environment where businesses can showcase their products and services, generate quality inquiries, and explore new business opportunities globally. Our dedicated support team is available to assist users and ensure a seamless experience throughout their business journey.
+                    </p>
+                    <p className="text-sm text-gray-500 leading-relaxed">
+                      With extensive experience in the B2B industry, Rootofamerica continues to empower businesses by offering innovative solutions that simplify trade and promote sustainable growth. We strive to create a marketplace where buyers and sellers can connect, collaborate, and conduct business confidently and effectively.
+                    </p>
+                    <p className="text-sm text-gray-500 leading-relaxed">
+                      Our vision is to provide every business with maximum exposure to national and international markets while helping them build valuable industry connections. We aim to become a trusted destination where entrepreneurs, manufacturers, exporters, suppliers, and service providers can fulfill all their business requirements under one platform.
+                    </p>
+                  </div>
+                )}
+                <button
+                  onClick={() => setIsExpanded(!isExpanded)}
+                  className="text-xs font-mono font-bold uppercase tracking-wider text-[#0e4a36] hover:text-[#0b3c2a] transition-colors flex items-center space-x-1 mt-2 focus:outline-none cursor-pointer"
+                >
+                  <span>{isExpanded ? 'View Less' : 'View More'}</span>
+                </button>
+              </div>
             </motion.div>
 
             {/* Micro USP Badges */}
@@ -94,9 +120,9 @@ export default function Hero({ onStartCalculator, onBrowseSourcing }: HeroProps)
               <button
                 id="hero-primary-cta"
                 onClick={onBrowseSourcing}
-                className="bg-[#0e4a36] hover:bg-[#0b3c2a] text-[#faf8f5] px-8 py-4 rounded-xl font-sans font-bold text-sm transition-all flex items-center justify-center space-x-2 shadow-lg hover:shadow-xl"
+                className="bg-[#0e4a36] hover:bg-[#0b3c2a] text-[#faf8f5] px-8 py-4 rounded-xl font-sans font-bold text-sm transition-all flex items-center justify-center space-x-2 shadow-lg hover:shadow-xl cursor-pointer"
               >
-                <span>Browse Sourcing Portfolio</span>
+                <span>Submit Sourcing Inquiry</span>
                 <ArrowRight className="h-4 w-4" />
               </button>
               

@@ -218,20 +218,17 @@ export default function DashboardSim() {
                       <div>
                         <div className="flex items-center space-x-1.5">
                           <span className="font-mono font-bold text-sm text-[#1c2421]">{po.id}</span>
-                          <span className="text-[11px] font-mono text-gray-400">({po.date})</span>
                         </div>
                         <p className="text-[11px] font-mono text-gray-400 mt-0.5">Tracking No: {po.trackingNumber}</p>
                       </div>
 
                       {/* Dynamic status badges */}
                       <span className={`text-[10px] font-mono font-bold px-3 py-1 rounded-full ${
-                        po.status === 'Delivered' 
-                          ? 'bg-emerald-100 text-emerald-800' 
-                          : po.status === 'In Transit' 
+                        (po.status === 'Delivered' || po.status === 'In Transit')
                           ? 'bg-blue-100 text-blue-800'
                           : 'bg-amber-100 text-amber-800 animate-pulse'
                       }`}>
-                        {po.status}
+                        {po.status === 'Delivered' ? 'In Transit' : po.status}
                       </span>
                     </div>
 

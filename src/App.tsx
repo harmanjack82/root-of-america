@@ -17,11 +17,14 @@ import {
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import FeatureGrid from './components/FeatureGrid';
-import ProductCatalog from './components/ProductCatalog';
+import CustomSourcingBox from './components/CustomSourcingBox';
+import WebsiteDevelopmentSection from './components/WebsiteDevelopmentSection';
 import WholesaleCalculator from './components/WholesaleCalculator';
 import GlobalTradeDesk from './components/GlobalTradeDesk';
 import CompliancePanel from './components/CompliancePanel';
 import RfqDrawer from './components/RfqDrawer';
+import EnquiryModal from './components/EnquiryModal';
+import WhatsAppWidget from './components/WhatsAppWidget';
 import Footer from './components/Footer';
 import DashboardSim from './components/DashboardSim';
 import GlobalTradeHub from './components/GlobalTradeHub';
@@ -39,6 +42,8 @@ import { B2B_TESTIMONIALS } from './data';
 export default function App() {
   const [rfqItems, setRfqItems] = useState<RfqItem[]>([]);
   const [isRfqOpen, setIsRfqOpen] = useState<boolean>(false);
+  const [isEnquiryOpen, setIsEnquiryOpen] = useState<boolean>(false);
+  const [enquiryCategory, setEnquiryCategory] = useState<string | undefined>(undefined);
   const [activeView, setActiveView] = useState<'landing' | 'dashboard' | 'trade-desk' | 'about-us' | 'disclaimer' | 'refund-policy' | 'privacy-policy' | 'terms-of-trade' | 'premium-services'>('landing');
   const [disclaimerSection, setDisclaimerSection] = useState<string | undefined>(undefined);
   const [showScrollTop, setShowScrollTop] = useState<boolean>(false);
@@ -146,7 +151,10 @@ export default function App() {
             {/* Hero Section */}
             <Hero 
               onStartCalculator={() => handleScrollTo('calculator-section')}
-              onBrowseSourcing={() => handleScrollTo('sourcing-catalog-section')}
+              onBrowseSourcing={() => {
+                setEnquiryCategory(undefined);
+                setIsEnquiryOpen(true);
+              }}
             />
 
             {/* Social Trust Brands Bar */}
@@ -178,6 +186,17 @@ export default function App() {
 
             {/* Core Capabilities */}
             <FeatureGrid />
+
+            {/* Website Development Presentation Section from Image */}
+            <WebsiteDevelopmentSection />
+
+            {/* Custom Sourcing Estimator Box */}
+            <CustomSourcingBox 
+              onOpenEnquiry={(category) => {
+                setEnquiryCategory(category);
+                setIsEnquiryOpen(true);
+              }}
+            />
 
             {/* Premium B2B Procurement Banner */}
             <div className="pt-4 pb-8 bg-[#faf8f5] border-b border-[#e5dfd3]">
@@ -232,12 +251,6 @@ export default function App() {
                 </div>
               </div>
             </div>
-
-            {/* Sourcing Catalog */}
-            <ProductCatalog 
-              onAddToRfq={handleAddToRfq}
-              addedProductIds={addedProductIds}
-            />
 
             {/* Logistics & Discount Calculator */}
             <WholesaleCalculator 
@@ -402,12 +415,22 @@ export default function App() {
         onClearRfq={handleClearRfq}
       />
 
+      {/* B2B Sourcing Enquiry Modal */}
+      <EnquiryModal 
+        isOpen={isEnquiryOpen}
+        onClose={() => setIsEnquiryOpen(false)}
+        defaultCategory={enquiryCategory}
+      />
+
       {/* Footer */}
       <Footer 
         onScrollTo={handleScrollTo}
         setActiveView={setActiveView}
         setDisclaimerSection={setDisclaimerSection}
       />
+
+      {/* WhatsApp Chat Support Widget */}
+      <WhatsAppWidget />
 
       {/* Floating Scroll to Top button */}
       <AnimatePresence>

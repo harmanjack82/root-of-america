@@ -11,7 +11,8 @@ import {
   Layers, 
   ChevronRight, 
   Sparkles,
-  Info
+  Info,
+  Trash2
 } from 'lucide-react';
 import { Product } from '../types';
 import { USA_PRODUCTS } from '../data';
@@ -22,6 +23,8 @@ interface ProductCatalogProps {
 }
 
 export default function ProductCatalog({ onAddToRfq, addedProductIds }: ProductCatalogProps) {
+  const [products, setProducts] = useState<Product[]>(USA_PRODUCTS);
+  const [editingProductId, setEditingProductId] = useState<string | null>(null);
   const [activeCategory, setActiveCategory] = useState<string>('All');
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
@@ -29,7 +32,7 @@ export default function ProductCatalog({ onAddToRfq, addedProductIds }: ProductC
 
   const categories = ['All', 'Organic Crops', 'Hardwood Timber', 'Natural Fibers', 'Bio-Materials'];
 
-  const filteredProducts = USA_PRODUCTS.filter(product => {
+  const filteredProducts = products.filter(product => {
     const matchesCategory = activeCategory === 'All' || product.category === activeCategory;
     const matchesSearch = product.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
                           product.origin.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -58,6 +61,41 @@ export default function ProductCatalog({ onAddToRfq, addedProductIds }: ProductC
     onAddToRfq(product, qty);
   };
 
+  const handleRemoveProduct = (productId: string) => {
+    setProducts(prev => prev.filter(p => p.id !== productId));
+  };
+
+  const handleAddBlankProduct = () => {
+    const newId = `custom-${Date.now()}`;
+    const newProduct: Product = {
+      id: newId,
+      name: '', // Empty name triggers edit mode / blank box
+      category: activeCategory === 'All' ? 'Organic Crops' : activeCategory,
+      grade: 'Custom Premium Grade',
+      moq: 100,
+      unit: 'Units',
+      pricePerUnit: 15,
+      origin: 'USA',
+      warehouse: 'Regional B2B Depot',
+      purity: '99% Certified',
+      specs: ['Custom product description and specifications'],
+      stock: 'Immediate Cargo',
+      image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=600'
+    };
+    setProducts(prev => [...prev, newProduct]);
+    setEditingProductId(newId);
+  };
+
+  const handleSaveProduct = (id: string, updatedFields: Partial<Product>) => {
+    setProducts(prev => prev.map(p => {
+      if (p.id === id) {
+        return { ...p, ...updatedFields } as Product;
+      }
+      return p;
+    }));
+    setEditingProductId(null);
+  };
+
   return (
     <section id="sourcing-catalog-section" className="py-16 bg-gradient-to-br from-[#faf8f5] via-[#f5edd7] to-[#e4d8bc] border-b border-[#e5dfd3] relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -75,6 +113,13 @@ export default function ProductCatalog({ onAddToRfq, addedProductIds }: ProductC
               Procure premium-grade natural assets sourced directly from American sustainable farms, timber reserves, and production fields. Detailed compliance records and trade specs provided on each item.
             </p>
           </div>
+          <button
+            onClick={handleAddBlankProduct}
+            className="flex items-center space-x-2 px-6 py-3 bg-[#0e4a36] hover:bg-[#0b3c2a] text-white font-sans font-bold text-sm rounded-xl shadow-md hover:shadow-lg transition-all shrink-0 cursor-pointer"
+          >
+            <Plus className="h-4 w-4" />
+            <span>Add New Blank Box</span>
+          </button>
         </div>
 
         {/* Category Filter Tabs */}
@@ -108,6 +153,157 @@ export default function ProductCatalog({ onAddToRfq, addedProductIds }: ProductC
               const currentQty = getQuantityForProduct(product.id, product.moq);
               const isAdded = addedProductIds[product.id] !== undefined;
 
+              if (editingProductId === product.id) {
+                return (
+                  <motion.div
+                    key={product.id}
+                    layout
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.95 }}
+                    transition={{ duration: 0.3 }}
+                    className="bg-gradient-to-b from-white to-[#fdfcfb] rounded-3xl border-2 border-[#0e4a36] overflow-hidden shadow-xl p-6 flex flex-col justify-between text-left space-y-4 min-h-[480px]"
+                  >
+                    <div className="space-y-3">
+                      <div className="flex justify-between items-center pb-2 border-b border-gray-100">
+                        <span className="text-[10px] font-mono font-bold text-[#0e4a36] uppercase bg-[#0e4a36]/10 px-2.5 py-1 rounded-md">
+                          Configure Blank Box
+                        </span>
+                        <button
+                          onClick={() => handleRemoveProduct(product.id)}
+                          className="text-red-500 hover:text-red-700 transition-colors cursor-pointer"
+                          title="Cancel & Delete Box"
+                        >
+                          <Trash2 className="h-4 w-4" />
+                        </button>
+                      </div>
+
+                      <div>
+                        <label className="block text-[10px] font-mono text-gray-400 uppercase mb-1">Commodity Name</label>
+                        <input
+                          type="text"
+                          placeholder="e.g. Premium Oats, Eco Packaging..."
+                          defaultValue={product.name}
+                          id={`edit-name-${product.id}`}
+                          className="w-full bg-white border border-[#e5dfd3] focus:border-[#0e4a36] rounded-xl px-3 py-1.5 text-xs font-semibold text-[#1c2421] outline-none"
+                        />
+                      </div>
+
+                      <div className="grid grid-cols-2 gap-2">
+                        <div>
+                          <label className="block text-[10px] font-mono text-gray-400 uppercase mb-1">Category</label>
+                          <select
+                            id={`edit-category-${product.id}`}
+                            defaultValue={product.category}
+                            className="w-full bg-white border border-[#e5dfd3] focus:border-[#0e4a36] rounded-xl px-2 py-1.5 text-xs font-semibold text-[#1c2421] outline-none"
+                          >
+                            <option value="Organic Crops">Organic Crops</option>
+                            <option value="Hardwood Timber">Hardwood Timber</option>
+                            <option value="Natural Fibers">Natural Fibers</option>
+                            <option value="Bio-Materials">Bio-Materials</option>
+                          </select>
+                        </div>
+                        <div>
+                          <label className="block text-[10px] font-mono text-gray-400 uppercase mb-1">Origin State</label>
+                          <input
+                            type="text"
+                            placeholder="e.g. Texas, USA"
+                            defaultValue={product.origin}
+                            id={`edit-origin-${product.id}`}
+                            className="w-full bg-white border border-[#e5dfd3] focus:border-[#0e4a36] rounded-xl px-3 py-1.5 text-xs font-semibold text-[#1c2421] outline-none"
+                          />
+                        </div>
+                      </div>
+
+                      <div className="grid grid-cols-2 gap-2">
+                        <div>
+                          <label className="block text-[10px] font-mono text-gray-400 uppercase mb-1">Price per Unit ($)</label>
+                          <input
+                            type="number"
+                            placeholder="Price"
+                            defaultValue={product.pricePerUnit}
+                            id={`edit-price-${product.id}`}
+                            className="w-full bg-white border border-[#e5dfd3] focus:border-[#0e4a36] rounded-xl px-3 py-1.5 text-xs font-semibold text-[#1c2421] outline-none"
+                          />
+                        </div>
+                        <div>
+                          <label className="block text-[10px] font-mono text-gray-400 uppercase mb-1">Unit Type</label>
+                          <input
+                            type="text"
+                            placeholder="Tons, BF, Bales..."
+                            defaultValue={product.unit}
+                            id={`edit-unit-${product.id}`}
+                            className="w-full bg-white border border-[#e5dfd3] focus:border-[#0e4a36] rounded-xl px-3 py-1.5 text-xs font-semibold text-[#1c2421] outline-none"
+                          />
+                        </div>
+                      </div>
+
+                      <div className="grid grid-cols-2 gap-2">
+                        <div>
+                          <label className="block text-[10px] font-mono text-gray-400 uppercase mb-1">Min Order (MOQ)</label>
+                          <input
+                            type="number"
+                            placeholder="MOQ"
+                            defaultValue={product.moq}
+                            id={`edit-moq-${product.id}`}
+                            className="w-full bg-white border border-[#e5dfd3] focus:border-[#0e4a36] rounded-xl px-3 py-1.5 text-xs font-semibold text-[#1c2421] outline-none"
+                          />
+                        </div>
+                        <div>
+                          <label className="block text-[10px] font-mono text-gray-400 uppercase mb-1">Stock Vol.</label>
+                          <input
+                            type="text"
+                            placeholder="e.g. 5,000 Units Available"
+                            defaultValue={product.stock}
+                            id={`edit-stock-${product.id}`}
+                            className="w-full bg-white border border-[#e5dfd3] focus:border-[#0e4a36] rounded-xl px-3 py-1.5 text-xs font-semibold text-[#1c2421] outline-none"
+                          />
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="flex space-x-2 pt-3 border-t border-gray-100">
+                      <button
+                        onClick={() => {
+                          const name = (document.getElementById(`edit-name-${product.id}`) as HTMLInputElement)?.value || 'Unnamed Commodity';
+                          const category = (document.getElementById(`edit-category-${product.id}`) as HTMLSelectElement)?.value || 'Organic Crops';
+                          const origin = (document.getElementById(`edit-origin-${product.id}`) as HTMLInputElement)?.value || 'USA';
+                          const pricePerUnit = parseFloat((document.getElementById(`edit-price-${product.id}`) as HTMLInputElement)?.value) || 10;
+                          const unit = (document.getElementById(`edit-unit-${product.id}`) as HTMLInputElement)?.value || 'Units';
+                          const moq = parseInt((document.getElementById(`edit-moq-${product.id}`) as HTMLInputElement)?.value) || 100;
+                          const stock = (document.getElementById(`edit-stock-${product.id}`) as HTMLInputElement)?.value || 'In Stock';
+
+                          handleSaveProduct(product.id, {
+                            name,
+                            category,
+                            origin,
+                            pricePerUnit,
+                            unit,
+                            moq,
+                            stock
+                          });
+                        }}
+                        className="flex-1 py-2.5 bg-[#0e4a36] hover:bg-[#0b3c2a] text-white font-sans font-bold text-xs rounded-xl shadow-md transition-all text-center cursor-pointer"
+                      >
+                        Save Box Details
+                      </button>
+                      <button
+                        onClick={() => {
+                          if (!product.name) {
+                            handleRemoveProduct(product.id);
+                          } else {
+                            setEditingProductId(null);
+                          }
+                        }}
+                        className="px-4 py-2.5 border border-[#e5dfd3] hover:bg-gray-50 text-gray-500 font-sans font-semibold text-xs rounded-xl transition-all text-center cursor-pointer"
+                      >
+                        Cancel
+                      </button>
+                    </div>
+                  </motion.div>
+                );
+              }
+
               return (
                 <motion.div
                   key={product.id}
@@ -116,7 +312,7 @@ export default function ProductCatalog({ onAddToRfq, addedProductIds }: ProductC
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.95 }}
                   transition={{ duration: 0.3 }}
-                  className="bg-gradient-to-b from-white to-[#fcfbfa] rounded-3xl border border-[#e5dfd3] overflow-hidden shadow-sm hover:shadow-xl hover:border-[#0e4a36]/50 transition-all duration-300 flex flex-col group"
+                  className="bg-gradient-to-b from-white to-[#fcfbfa] rounded-3xl border border-[#e5dfd3] overflow-hidden shadow-sm hover:shadow-xl hover:border-[#0e4a36]/50 transition-all duration-300 flex flex-col group relative"
                 >
                   {/* Category Section & Image */}
                   <div className="relative h-48 overflow-hidden bg-gray-100">
@@ -129,12 +325,34 @@ export default function ProductCatalog({ onAddToRfq, addedProductIds }: ProductC
                     <div className="absolute top-4 left-4 bg-white/95 backdrop-blur-sm border border-[#e5dfd3] px-3 py-1 rounded-full text-[11px] font-mono font-bold text-[#0e4a36] shadow-sm">
                       {product.category}
                     </div>
-                    {isAdded && (
-                      <div className="absolute top-4 right-4 bg-amber-500 text-[#1c2421] px-3 py-1 rounded-full text-[11px] font-sans font-bold flex items-center space-x-1 shadow-sm">
-                        <Sparkles className="h-3 w-3 animate-pulse" />
-                        <span>In Draft RFQ ({addedProductIds[product.id]} {product.unit})</span>
-                      </div>
-                    )}
+                    <div className="absolute top-4 right-4 flex items-center space-x-1.5">
+                      {isAdded && (
+                        <div className="bg-amber-500 text-[#1c2421] px-2 py-1 rounded-full text-[10px] font-sans font-bold flex items-center space-x-1 shadow-sm">
+                          <Sparkles className="h-3 w-3 animate-pulse" />
+                          <span>Draft</span>
+                        </div>
+                      )}
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setEditingProductId(product.id);
+                        }}
+                        className="bg-white/95 hover:bg-amber-50 text-gray-500 hover:text-[#0e4a36] border border-[#e5dfd3] p-1.5 rounded-full shadow-sm transition-colors cursor-pointer"
+                        title="Edit Box"
+                      >
+                        <svg className="h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" /></svg>
+                      </button>
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleRemoveProduct(product.id);
+                        }}
+                        className="bg-white/95 hover:bg-red-50 text-gray-400 hover:text-red-600 border border-[#e5dfd3] p-1.5 rounded-full shadow-sm transition-colors cursor-pointer"
+                        title="Remove Box"
+                      >
+                        <Trash2 className="h-3.5 w-3.5" />
+                      </button>
+                    </div>
                   </div>
 
                   {/* Body Content */}
@@ -147,7 +365,7 @@ export default function ProductCatalog({ onAddToRfq, addedProductIds }: ProductC
                           <span>Origin: {product.origin}</span>
                         </div>
                         <h3 className="text-xl font-sans font-bold text-[#1c2421] mt-1 leading-tight line-clamp-1 group-hover:text-[#0e4a36] transition-colors">
-                          {product.name}
+                          {product.name || 'Unnamed Commodity'}
                         </h3>
                       </div>
 
