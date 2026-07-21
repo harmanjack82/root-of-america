@@ -91,7 +91,7 @@ export default function Footer({ onScrollTo, setActiveView, setDisclaimerSection
               </div>
               <div className="flex items-center space-x-2">
                 <Mail className="h-4 w-4 text-amber-500" />
-                <span>procurement@rootsofamerica.b2b.com</span>
+                <span>Info@rootofamerica.com</span>
               </div>
             </div>
           </div>

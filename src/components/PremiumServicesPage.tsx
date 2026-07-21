@@ -1661,7 +1661,7 @@ export default function PremiumServicesPage({ onBack }: PremiumServicesPageProps
                   </div>
                   <div>
                     <h4 className="text-xs font-bold text-gray-900 font-sans">Corporate Sales Inquiries</h4>
-                    <p className="text-xs text-gray-500 font-mono">premium-sourcing@rootofamerica.com</p>
+                    <p className="text-xs text-gray-500 font-mono">Info@rootofamerica.com</p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-3">
@@ -1670,7 +1670,7 @@ export default function PremiumServicesPage({ onBack }: PremiumServicesPageProps
                   </div>
                   <div>
                     <h4 className="text-xs font-bold text-gray-900 font-sans">Active Matchmaking Team</h4>
-                    <p className="text-xs text-gray-500 font-mono">vip-matching@rootofamerica.com</p>
+                    <p className="text-xs text-gray-500 font-mono">Info@rootofamerica.com</p>
                   </div>
                 </div>
               </div>
