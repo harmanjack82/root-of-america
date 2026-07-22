@@ -68,6 +68,21 @@ export default function DashboardSim() {
 
     setIsOrdering(true);
 
+    const subject = encodeURIComponent(`Roots of America Purchase Order: ${buyer.companyName}`);
+    const body = encodeURIComponent(
+      `NEW PURCHASE ORDER SUBMISSION\n` +
+      `-----------------------------------\n` +
+      `Buyer Company: ${buyer.companyName}\n` +
+      `Product: ${selectedProduct.name}\n` +
+      `Quantity: ${orderQty} ${selectedProduct.unit}\n` +
+      `Total Cost: $${Math.round(cost).toLocaleString()} USD\n` +
+      `Delivery Speed: ${selectedSpeed.toUpperCase()}\n` +
+      `-----------------------------------\n` +
+      `Dispatched to info@rootofamerica.com`
+    );
+
+    const mailtoUrl = `mailto:info@rootofamerica.com?subject=${subject}&body=${body}`;
+
     // Simulate ordering process
     setTimeout(() => {
       const newPo: MockPurchaseOrder = {
@@ -90,7 +105,13 @@ export default function DashboardSim() {
       setIsOrdering(false);
       setOrderSuccessMsg(true);
 
-      setTimeout(() => setOrderSuccessMsg(false), 4000);
+      try {
+        window.location.href = mailtoUrl;
+      } catch (err) {
+        console.log('Mailto redirect:', err);
+      }
+
+      setTimeout(() => setOrderSuccessMsg(false), 5000);
     }, 1200);
   };
 

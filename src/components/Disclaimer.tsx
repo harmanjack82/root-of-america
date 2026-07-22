@@ -136,14 +136,14 @@ export default function Disclaimer({ onBack, defaultSection }: DisclaimerProps) 
             
             <div className="space-y-4 text-sm sm:text-base text-gray-700 leading-relaxed font-sans">
               <p className="font-semibold text-gray-900 bg-amber-500/5 p-4 rounded-xl border border-amber-500/10">
-                All payments for services offered through Root Of America must be made only to the officially authorized company bank account or approved payment gateway designated by Root Of America, a company headquartered in Delaware, USA. We do not authorize any employee, representative, reseller, third party, or organization to collect payments through personal bank accounts, personal payment applications, cryptocurrency wallets, or any other unauthorized payment method.
+                All payments for services offered through Root Of America are processed and accepted by our official payment company <strong className="text-[#0e4a36]">Tixisle LLC</strong>, located at <strong className="text-[#0e4a36]">6300 RIVERSIDE PLAZA NW STE 100 #3037, ALBUQUERQUE, NEW MEXICO 87120, UNITED STATES</strong>. All payments must be made only to the officially authorized company bank account or approved payment gateway designated by Tixisle LLC / Root Of America. We do not authorize any employee, representative, reseller, third party, or organization to collect payments through personal bank accounts, personal payment applications, cryptocurrency wallets, or any other unauthorized payment method.
               </p>
               <p>
-                Root Of America shall not be responsible or liable for any loss, damage, fraud, or inconvenience arising from payments made to unauthorized individuals or entities falsely claiming to represent our company. To protect your business and financial interests, we strongly recommend verifying all payment instructions directly with our official support team before completing any transaction.
+                Tixisle LLC and Root Of America shall not be responsible or liable for any loss, damage, fraud, or inconvenience arising from payments made to unauthorized individuals or entities falsely claiming to represent our company. To protect your business and financial interests, we strongly recommend verifying all payment instructions directly with our official support team (<a href="mailto:Info@rootofamerica.com" className="text-[#0e4a36] underline font-bold">Info@rootofamerica.com</a>) before completing any transaction.
               </p>
               <p className="bg-[#1c2421] text-white p-4 rounded-xl text-xs font-mono flex items-start space-x-2.5">
                 <AlertTriangle className="h-4 w-4 text-amber-500 shrink-0 mt-0.5" />
-                <span>If you receive a payment request that does not reference an officially authorized Root Of America business account, please contact our support team immediately for verification before making any payment.</span>
+                <span>If you receive a payment request that does not reference an officially authorized Tixisle LLC / Root Of America business account, please contact our support team immediately at Info@rootofamerica.com for verification before making any payment.</span>
               </p>
             </div>
           </motion.section>
@@ -299,7 +299,7 @@ export default function Disclaimer({ onBack, defaultSection }: DisclaimerProps) 
             </div>
             <h3 className="text-xl sm:text-2xl font-serif font-bold">Secure Commerce &amp; Safe Networking</h3>
             <p className="text-xs sm:text-sm text-gray-300 leading-relaxed">
-              We operate exclusively in a verified Delaware C-Corp environment. Protecting our buyers and sellers from unauthorized agents or accounts is our top operational priority. Always pay through officially routed invoices.
+              We operate exclusively through verified corporate channels under Tixisle LLC (6300 RIVERSIDE PLAZA NW STE 100 #3037, ALBUQUERQUE, NM 87120, USA). Protecting our buyers and sellers from unauthorized agents or accounts is our top operational priority. Always pay through officially routed invoices.
             </p>
           </div>
           <button

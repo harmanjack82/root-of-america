@@ -43,12 +43,32 @@ export default function EnquiryModal({ isOpen, onClose, defaultCategory }: Enqui
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate API submission
+    const subject = encodeURIComponent(`Roots of America Enquiry [${formData.category}]: ${formData.company}`);
+    const body = encodeURIComponent(
+      `NEW INQUIRY SUBMISSION\n` +
+      `-----------------------------------\n` +
+      `Name: ${formData.name}\n` +
+      `Company: ${formData.company}\n` +
+      `Email: ${formData.email}\n` +
+      `Phone: ${formData.phone}\n` +
+      `Category: ${formData.category}\n\n` +
+      `Inquiry Details:\n${formData.message}\n` +
+      `-----------------------------------\n` +
+      `Sent via Roots of America B2B Portal`
+    );
+
+    const mailtoUrl = `mailto:info@rootofamerica.com?subject=${subject}&body=${body}`;
+
     setTimeout(() => {
       setIsSubmitting(false);
       setSubmitSuccess(true);
       setTicketNumber(`ENQ-2026-${Math.floor(100000 + Math.random() * 900000)}`);
-    }, 1500);
+      try {
+        window.location.href = mailtoUrl;
+      } catch (err) {
+        console.log('Mailto redirect:', err);
+      }
+    }, 1200);
   };
 
   const handleReset = () => {
@@ -254,8 +274,8 @@ export default function EnquiryModal({ isOpen, onClose, defaultCategory }: Enqui
                       </div>
 
                       <div className="space-y-1">
-                        <h4 className="text-lg font-sans font-extrabold text-[#1c2421]">Inquiry Received</h4>
-                        <p className="text-xs text-gray-500 px-4">Your general inquiry has been registered in our B2B trade engine successfully.</p>
+                        <h4 className="text-lg font-sans font-extrabold text-[#1c2421]">Inquiry Dispatched</h4>
+                        <p className="text-xs text-gray-500 px-4">Your inquiry details have been routed directly to <strong className="text-[#0e4a36]">info@rootofamerica.com</strong>.</p>
                       </div>
 
                       {/* Detail card */}
@@ -277,10 +297,14 @@ export default function EnquiryModal({ isOpen, onClose, defaultCategory }: Enqui
                             <span>Category:</span>
                             <span className="font-sans font-semibold text-[#1c2421]">{formData.category}</span>
                           </div>
+                          <div className="flex justify-between">
+                            <span>Target Mail:</span>
+                            <span className="font-sans font-bold text-[#0e4a36]">info@rootofamerica.com</span>
+                          </div>
                         </div>
                         <div className="border-t pt-2 mt-2 bg-amber-50/50 p-2 border border-amber-200 text-[10px] leading-relaxed text-amber-800 flex items-start space-x-2">
                           <Clock className="h-3.5 w-3.5 text-amber-600 mt-0.5 flex-shrink-0" />
-                          <span>An enterprise representative will reach out to you within **15 minutes** to consult on your custom requirements.</span>
+                          <span>An email prompt was launched. You can also send directly to <a href="mailto:info@rootofamerica.com" className="font-bold underline text-[#0e4a36]">info@rootofamerica.com</a>.</span>
                         </div>
                       </div>
 

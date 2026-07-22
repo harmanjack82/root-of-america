@@ -153,7 +153,7 @@ export const MOCK_BUYER: BuyerProfile = {
   creditLimit: 150000,
   availableCredit: 82540,
   representative: 'Sarah Jenkins',
-  repEmail: 's.jenkins@rootsofamerica.b2b.com'
+  repEmail: 'info@rootofamerica.com'
 };
 
 export const MOCK_ORDERS: MockPurchaseOrder[] = [

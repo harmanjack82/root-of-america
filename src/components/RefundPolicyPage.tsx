@@ -59,17 +59,17 @@ export default function RefundPolicyPage({ onBack }: RefundPolicyPageProps) {
             Refund Policy
           </h1>
           <p className="text-xs font-mono text-gray-500 uppercase tracking-widest">
-            Delaware Registered C-Corporation • Roots of America
+            Tixisle LLC • 6300 RIVERSIDE PLAZA NW STE 100 #3037 ALBUQUERQUE NEW MEXICO 87120 UNITED STATES
           </p>
         </motion.div>
 
         {/* Introduction */}
         <div className="prose prose-emerald max-w-none space-y-6 text-gray-700 font-sans leading-relaxed text-sm sm:text-base mb-12">
           <p className="font-semibold text-gray-900 bg-[#0e4a36]/5 p-6 rounded-2xl border border-[#0e4a36]/10">
-            Thank you for choosing Root Of America for your business growth, digital marketing, and B2B marketplace solutions. Headquartered in Delaware, USA, we value our customers and are committed to delivering high-quality services that support their business objectives. If, for any reason, you are not completely satisfied with a purchase, please review this Refund Policy carefully.
+            Thank you for choosing Root Of America (operated by Tixisle LLC). Headquartered at 6300 RIVERSIDE PLAZA NW STE 100 #3037, ALBUQUERQUE, NEW MEXICO 87120, UNITED STATES, we value our customers and are committed to delivering high-quality services that support their business objectives. All payments and refunds are processed through our primary billing company, Tixisle LLC.
           </p>
           <p>
-            This Refund Policy explains the terms and conditions governing cancellations, refunds, and service-related disputes for services provided by Root Of America.
+            This Refund Policy explains the terms and conditions governing cancellations, refunds, and service-related disputes for services provided by Root Of America and billed through Tixisle LLC.
           </p>
         </div>
 
@@ -100,8 +100,8 @@ export default function RefundPolicyPage({ onBack }: RefundPolicyPageProps) {
                 <h3 className="font-serif font-bold text-gray-900 mb-2">Definitions</h3>
                 <ul className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs font-sans text-gray-600">
                   <li className="bg-[#faf8f5] p-4 rounded-xl border border-[#e5dfd3]">
-                    <strong className="text-gray-900 block mb-1">Company</strong>
-                    refers to Root Of America, a company headquartered in Delaware, United States, including its owners, directors, officers, employees, affiliates, contractors, representatives, and authorized service providers.
+                    <strong className="text-gray-900 block mb-1">Company &amp; Payment Entity</strong>
+                    refers to Tixisle LLC (operating Root Of America), located at 6300 RIVERSIDE PLAZA NW STE 100 #3037, ALBUQUERQUE, NEW MEXICO 87120, UNITED STATES, including its owners, directors, officers, employees, affiliates, contractors, representatives, and authorized service providers.
                   </li>
                   <li className="bg-[#faf8f5] p-4 rounded-xl border border-[#e5dfd3]">
                     <strong className="text-gray-900 block mb-1">Services</strong>

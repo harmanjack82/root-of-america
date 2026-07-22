@@ -71,13 +71,39 @@ export default function RfqDrawer({
     }
 
     setIsSubmitting(true);
+
+    const itemsSummary = rfqItems.map(i => `- ${i.product.name} (Qty: ${i.quantity} ${i.product.unit}) @ $${i.product.pricePerUnit}/${i.product.unit}`).join('\n');
+    const subtotal = calculateSubtotal();
+
+    const subject = encodeURIComponent(`Roots of America Bulk RFQ Quote Request: ${formData.companyName}`);
+    const body = encodeURIComponent(
+      `NEW BULK RFQ SUBMISSION\n` +
+      `-----------------------------------\n` +
+      `Company: ${formData.companyName}\n` +
+      `Contact Name: ${formData.contactName}\n` +
+      `Email: ${formData.email}\n` +
+      `Phone: ${formData.phone}\n` +
+      `Destination State: ${formData.shippingState}\n` +
+      `Logistics Speed: ${formData.logisticsSpeed}\n\n` +
+      `Requested Items:\n${itemsSummary}\n\n` +
+      `Estimated Subtotal: $${subtotal.toLocaleString()}\n` +
+      `Additional Notes: ${formData.notes || 'None'}\n` +
+      `-----------------------------------\n` +
+      `Sent via Roots of America B2B Trade Portal`
+    );
+
+    const mailtoUrl = `mailto:info@rootofamerica.com?subject=${subject}&body=${body}`;
     
-    // Simulate API delay
     setTimeout(() => {
       setIsSubmitting(false);
       setSubmitSuccess(true);
       setRfqNumber(`RFQ-2026-${Math.floor(100000 + Math.random() * 900000)}`);
-    }, 1800);
+      try {
+        window.location.href = mailtoUrl;
+      } catch (err) {
+        console.log('Mailto redirect:', err);
+      }
+    }, 1500);
   };
 
   const resetDrawer = () => {
@@ -332,8 +358,8 @@ export default function RfqDrawer({
                     </div>
 
                     <div className="space-y-2">
-                      <h4 className="text-xl font-sans font-bold text-[#1c2421]">RFQ Sourcing Request Submitted</h4>
-                      <p className="text-xs text-gray-500">Your wholesale contract request has been loaded into our central ticketing ERP.</p>
+                      <h4 className="text-xl font-sans font-bold text-[#1c2421]">RFQ Dispatched to Company Mail</h4>
+                      <p className="text-xs text-gray-500">Your wholesale contract request has been formatted and sent directly to <strong className="text-[#0e4a36]">info@rootofamerica.com</strong>.</p>
                     </div>
 
                     {/* Receipt breakdown Card */}
@@ -360,11 +386,15 @@ export default function RfqDrawer({
                           <span>Estimated Subtotal FOB:</span>
                           <span className="font-sans font-bold text-emerald-700">${calculateSubtotal().toLocaleString()} USD</span>
                         </div>
+                        <div className="flex justify-between">
+                          <span>Routed Mail:</span>
+                          <span className="font-sans font-bold text-[#0e4a36]">info@rootofamerica.com</span>
+                        </div>
                       </div>
 
                       <div className="border-t pt-2 mt-2 bg-amber-50/50 p-2.5 rounded-xl border border-amber-200 text-[10px] leading-relaxed text-amber-800 flex items-start space-x-2">
                         <Clock className="h-4 w-4 text-amber-600 mt-0.5 flex-shrink-0" />
-                        <span>A dedicated **Roots of America Sourcing Agent** will review your laboratory standards and call you within **15 minutes** to establish logistics schedules and lock contract rates.</span>
+                        <span>Mail prompt dispatched. You can also email us directly at <a href="mailto:info@rootofamerica.com" className="font-bold underline text-[#0e4a36]">info@rootofamerica.com</a> for urgent procurement needs.</span>
                       </div>
                     </div>
 

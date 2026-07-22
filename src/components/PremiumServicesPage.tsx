@@ -119,10 +119,34 @@ export default function PremiumServicesPage({ onBack }: PremiumServicesPageProps
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setFormSubmitted(true);
+
+    const subject = encodeURIComponent(`Premium Service Inquiry [${selectedPlan.toUpperCase()} Plan]: ${formData.company || formData.name}`);
+    const body = encodeURIComponent(
+      `NEW PREMIUM SERVICE INQUIRY\n` +
+      `-----------------------------------\n` +
+      `Selected Plan: ${selectedPlan.toUpperCase()}\n` +
+      `Name: ${formData.name}\n` +
+      `Company: ${formData.company}\n` +
+      `Email: ${formData.email}\n` +
+      `Phone: ${formData.phone}\n` +
+      `Industry: ${formData.industry}\n\n` +
+      `Message / Requirements:\n${formData.message}\n` +
+      `-----------------------------------\n` +
+      `Sent via Roots of America Premium Portal`
+    );
+
+    const mailtoUrl = `mailto:info@rootofamerica.com?subject=${subject}&body=${body}`;
+
+    try {
+      window.location.href = mailtoUrl;
+    } catch (err) {
+      console.log('Mailto redirect:', err);
+    }
+
     setTimeout(() => {
       setFormSubmitted(false);
       setFormData({ name: '', email: '', phone: '', company: '', industry: 'agriculture', message: '' });
-    }, 4000);
+    }, 6000);
   };
 
   const b2bFeatures = [
@@ -1689,9 +1713,9 @@ export default function PremiumServicesPage({ onBack }: PremiumServicesPageProps
                     <div className="bg-[#0e4a36] text-white p-4 rounded-full">
                       <ShieldCheck className="h-10 w-10 text-amber-400" />
                     </div>
-                    <h3 className="font-serif font-bold text-lg text-gray-950">Inquiry Logged Securely</h3>
+                    <h3 className="font-serif font-bold text-lg text-gray-950">Inquiry Dispatched to Mail</h3>
                     <p className="text-xs text-gray-600 max-w-xs font-sans">
-                      Thank you! A senior Key Account Manager representing your selected plan (<strong>{selectedPlan.toUpperCase()}</strong>) has been assigned and will contact you via email shortly.
+                      Thank you! Your inquiry details for the <strong>{selectedPlan.toUpperCase()}</strong> plan have been formatted and routed directly to <strong className="text-[#0e4a36]">info@rootofamerica.com</strong>.
                     </p>
                   </motion.div>
                 ) : (

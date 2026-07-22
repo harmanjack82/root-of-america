@@ -500,6 +500,31 @@ export default function GlobalTradeDesk({ onExploreMore }: GlobalTradeDeskProps 
 
     setBulletins([newRequirement, ...bulletins]);
     setIsPostOpen(false);
+
+    const subject = encodeURIComponent(`New Global Trade Listing [${formData.type.toUpperCase()}]: ${formData.itemName} - ${formData.companyName}`);
+    const body = encodeURIComponent(
+      `NEW TRADE LISTING SUBMISSION\n` +
+      `-----------------------------------\n` +
+      `Type: ${formData.type.toUpperCase()}\n` +
+      `Company: ${formData.companyName}\n` +
+      `Country: ${formData.country}\n` +
+      `Item Name: ${formData.itemName}\n` +
+      `Category: ${formData.productCategory}\n` +
+      `Volume: ${formData.volume} ${formData.unit}\n` +
+      `Target Price: $${formData.pricePerUnit} USD per ${formData.unit}\n` +
+      `Incoterms: ${formData.incoterms}\n` +
+      `Preferred Port: ${formData.preferredPort}\n` +
+      `Purity/Grade: ${formData.purityGrade}\n` +
+      `-----------------------------------\n` +
+      `Dispatched to info@rootofamerica.com`
+    );
+
+    try {
+      window.location.href = `mailto:info@rootofamerica.com?subject=${subject}&body=${body}`;
+    } catch (err) {
+      console.log('Mailto error:', err);
+    }
+
     // Reset form
     setFormData({
       type: 'buyer',
@@ -529,6 +554,28 @@ export default function GlobalTradeDesk({ onExploreMore }: GlobalTradeDeskProps 
   const handleExecuteNegotiation = (e: React.FormEvent) => {
     e.preventDefault();
     setHasConnected(true);
+
+    if (selectedMatch) {
+      const subject = encodeURIComponent(`Trade Negotiation Inquiry: ${selectedMatch.title}`);
+      const body = encodeURIComponent(
+        `NEW TRADE DESK NEGOTIATION\n` +
+        `-----------------------------------\n` +
+        `Listing Title: ${selectedMatch.title}\n` +
+        `Commodity Category: ${selectedMatch.productCategory}\n` +
+        `Proposed Volume: ${negotiatedQty} ${selectedMatch.unit}\n` +
+        `Target Currency: ${selectedTargetCurrency}\n` +
+        `Incoterms: ${selectedMatch.incoterms}\n` +
+        `Additional Notes: ${negotiationNotes || 'None'}\n` +
+        `-----------------------------------\n` +
+        `Dispatched to info@rootofamerica.com`
+      );
+
+      try {
+        window.location.href = `mailto:info@rootofamerica.com?subject=${subject}&body=${body}`;
+      } catch (err) {
+        console.log('Mailto error:', err);
+      }
+    }
   };
 
   // Cost estimates

@@ -77,7 +77,7 @@ export default function AboutUs({ onBack }: AboutUsProps) {
             </div>
             <h3 className="text-xl font-serif font-bold text-[#1c2421]">Empowering Organizations</h3>
             <p className="text-sm text-gray-600 leading-relaxed">
-              Headquartered in Delaware, USA, our mission is to provide businesses with innovative tools, valuable opportunities, and reliable support to help them grow faster and compete successfully in today's global marketplace.
+              Operated by <strong>Tixisle LLC</strong> (located at 6300 RIVERSIDE PLAZA NW STE 100 #3037, ALBUQUERQUE, NEW MEXICO 87120, UNITED STATES), our mission is to provide businesses with innovative tools, valuable opportunities, and reliable support to help them grow faster and compete successfully in today's global marketplace.
             </p>
             <p className="text-sm text-gray-600 leading-relaxed">
               Root Of America delivers professional B2B business solutions, digital marketing services, and strategic networking opportunities that empower organizations to establish a strong market presence. We believe our clients' success reflects our own, which is why we focus on building long-term partnerships based on trust, transparency, innovation, and shared growth.

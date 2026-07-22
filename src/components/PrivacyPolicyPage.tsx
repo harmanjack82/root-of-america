@@ -59,14 +59,14 @@ export default function PrivacyPolicyPage({ onBack }: PrivacyPolicyPageProps) {
             Privacy Policy
           </h1>
           <p className="text-xs font-mono text-gray-500 uppercase tracking-widest">
-            Delaware Registered C-Corporation • Roots of America
+            Tixisle LLC • 6300 RIVERSIDE PLAZA NW STE 100 #3037 ALBUQUERQUE NEW MEXICO 87120 UNITED STATES
           </p>
         </motion.div>
 
         {/* Introduction Banner */}
         <div className="prose prose-emerald max-w-none space-y-6 text-gray-700 font-sans leading-relaxed text-sm sm:text-base mb-12">
           <p className="font-semibold text-gray-900 bg-[#0e4a36]/5 p-6 rounded-2xl border border-[#0e4a36]/10">
-            At Root Of America, headquartered in Delaware, USA, protecting the privacy and security of our visitors, customers, and business partners is one of our highest priorities. This Privacy Policy explains how we collect, use, disclose, store, and safeguard information when you visit our website or use our products and services.
+            At Root Of America (operated by Tixisle LLC, located at 6300 RIVERSIDE PLAZA NW STE 100 #3037, ALBUQUERQUE, NEW MEXICO 87120, UNITED STATES), protecting the privacy and security of our visitors, customers, and business partners is one of our highest priorities. This Privacy Policy explains how we collect, use, disclose, store, and safeguard information when you visit our website or use our products and services.
           </p>
           <p>
             By accessing or using the Root Of America website, you acknowledge that you have read and understood this Privacy Policy and consent to the collection and use of information as described herein.

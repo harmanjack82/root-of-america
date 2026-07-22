@@ -62,14 +62,14 @@ export default function TermsOfTradePage({ onBack }: TermsOfTradePageProps) {
             Terms of Trade
           </h1>
           <p className="text-xs font-mono text-gray-500 uppercase tracking-widest">
-            Roots Of America Inc. • Delaware Headquarters
+            Tixisle LLC • 6300 RIVERSIDE PLAZA NW STE 100 #3037 ALBUQUERQUE NEW MEXICO 87120 UNITED STATES
           </p>
         </motion.div>
 
         {/* Introduction Banner */}
         <div className="prose prose-emerald max-w-none space-y-6 text-gray-700 font-sans leading-relaxed text-sm sm:text-base mb-12">
           <p className="font-semibold text-gray-900 bg-[#0e4a36]/5 p-6 rounded-2xl border border-[#0e4a36]/10">
-            Welcome to Root Of America. These Terms and Conditions (&quot;Terms&quot;) govern your access to and use of the Root Of America website, products, and services. By accessing or using our website, you agree to be legally bound by these Terms. If you do not agree with any part of these Terms, you must discontinue use of our website immediately.
+            Welcome to Root Of America (operated by Tixisle LLC). These Terms and Conditions (&quot;Terms&quot;) govern your access to and use of the Root Of America website, products, payment processing, and services. By accessing or using our website or submitting payments, you agree to be legally bound by these Terms. If you do not agree with any part of these Terms, you must discontinue use of our website immediately.
           </p>
           
           <div className="bg-white rounded-2xl p-6 border border-[#e5dfd3] space-y-3 shadow-sm">
@@ -80,12 +80,12 @@ export default function TermsOfTradePage({ onBack }: TermsOfTradePageProps) {
                 <span>Refer to any individual, business, organization, or other legal entity accessing or using our Website or Services.</span>
               </li>
               <li className="flex items-start space-x-2">
-                <span className="font-bold text-[#1c2421] shrink-0 min-w-[120px]">&quot;Root Of America&quot;:</span>
-                <span>&quot;Company,&quot; &quot;We,&quot; &quot;Us,&quot; and &quot;Our&quot; refer to Root Of America, a company headquartered in Delaware, United States, together with its affiliates, subsidiaries, officers, employees, contractors, and authorized representatives.</span>
+                <span className="font-bold text-[#1c2421] shrink-0 min-w-[120px]">&quot;Company&quot;, &quot;We&quot;:</span>
+                <span>&quot;Company,&quot; &quot;We,&quot; &quot;Us,&quot; and &quot;Our&quot; refer to Tixisle LLC (operating Root Of America), located at 6300 RIVERSIDE PLAZA NW STE 100 #3037, ALBUQUERQUE, NEW MEXICO 87120, UNITED STATES, together with its payment processors, affiliates, subsidiaries, officers, employees, contractors, and authorized representatives.</span>
               </li>
               <li className="flex items-start space-x-2">
-                <span className="font-bold text-[#1c2421] shrink-0 min-w-[120px]">&quot;Parties&quot;:</span>
-                <span>Refers collectively to both the User and Root Of America.</span>
+                <span className="font-bold text-[#1c2421] shrink-0 min-w-[120px]">&quot;Payment Partner&quot;:</span>
+                <span>Refers to Tixisle LLC, the designated entity handling all payment receipts, billing, and financial transactions for Root Of America.</span>
               </li>
             </ul>
           </div>

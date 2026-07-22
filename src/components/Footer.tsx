@@ -81,17 +81,21 @@ export default function Footer({ onScrollTo, setActiveView, setDisclaimerSection
             </div>
 
             <div className="space-y-2.5 text-xs font-mono pt-2">
-              <div className="flex items-center space-x-2">
-                <MapPin className="h-4 w-4 text-amber-500" />
-                <span>100 S. Wacker Drive, Chicago, IL 60606, USA</span>
+              <div className="flex items-start space-x-2">
+                <MapPin className="h-4 w-4 text-amber-500 shrink-0 mt-0.5" />
+                <span className="leading-tight">6300 RIVERSIDE PLAZA NW STE 100 #3037, ALBUQUERQUE, NEW MEXICO 87120, UNITED STATES</span>
               </div>
               <div className="flex items-center space-x-2">
-                <Phone className="h-4 w-4 text-amber-500" />
+                <Phone className="h-4 w-4 text-amber-500 shrink-0" />
                 <span>+1 (800) 555-ROA-B2B</span>
               </div>
               <div className="flex items-center space-x-2">
-                <Mail className="h-4 w-4 text-amber-500" />
+                <Mail className="h-4 w-4 text-amber-500 shrink-0" />
                 <span>Info@rootofamerica.com</span>
+              </div>
+              <div className="pt-2 border-t border-gray-800 text-[11px] text-gray-400">
+                <span className="text-amber-400 font-bold block mb-0.5">Payment Company:</span>
+                <span>Tixisle LLC — All billing and payments are accepted and processed through Tixisle LLC.</span>
               </div>
             </div>
           </div>
@@ -176,18 +180,20 @@ export default function Footer({ onScrollTo, setActiveView, setDisclaimerSection
 
           {/* Column 5: Compliance */}
           <div className="lg:col-span-2 text-left space-y-4">
-            <h4 className="text-xs font-mono font-bold text-white uppercase tracking-widest border-b border-gray-800 pb-2">Corporate</h4>
+            <h4 className="text-xs font-mono font-bold text-white uppercase tracking-widest border-b border-gray-800 pb-2">Corporate &amp; Billing</h4>
             <p className="text-xs text-gray-500 leading-relaxed">
-              Roots of America is a Delaware registered C-Corporation in good standing. All materials comply with Section 102 of US Sourcing Standards.
+              Roots of America is operated and billing is handled by <strong className="text-gray-300">Tixisle LLC</strong>.
             </p>
-
+            <p className="text-[11px] text-gray-500 font-mono leading-tight">
+              6300 RIVERSIDE PLAZA NW STE 100 #3037, ALBUQUERQUE, NM 87120, USA
+            </p>
           </div>
 
         </div>
 
         {/* Lower row */}
         <div className="mt-12 pt-8 border-t border-gray-800 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs font-mono">
-          <p>@2026 Roots Of America Inc. All Business rights reserved.</p>
+          <p>© 2026 Tixisle LLC (Roots Of America). All Business rights reserved.</p>
           <div className="flex space-x-6 text-gray-500">
             <button 
               id="terms-of-trade-footer-btn"
