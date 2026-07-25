@@ -39,9 +39,34 @@ export default function EnquiryModal({ isOpen, onClose, defaultCategory }: Enqui
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+
+    const payload = {
+      formType: 'Pop-Up Enquiry',
+      name: formData.name,
+      company: formData.company,
+      email: formData.email,
+      phone: formData.phone,
+      category: formData.category,
+      subject: `Roots of America Pop-Up Enquiry [${formData.category}]: ${formData.company || formData.name}`,
+      message: formData.message,
+      details: {
+        category: formData.category,
+        pageOrigin: window.location.pathname
+      }
+    };
+
+    try {
+      await fetch('/api/enquiry', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+    } catch (err) {
+      console.warn('Backend API submission dispatch warning:', err);
+    }
 
     const subject = encodeURIComponent(`Roots of America Enquiry [${formData.category}]: ${formData.company}`);
     const body = encodeURIComponent(
@@ -59,16 +84,15 @@ export default function EnquiryModal({ isOpen, onClose, defaultCategory }: Enqui
 
     const mailtoUrl = `mailto:info@rootsofamerica.com?cc=info@rootofamerica.com&subject=${subject}&body=${body}`;
 
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setSubmitSuccess(true);
-      setTicketNumber(`ENQ-2026-${Math.floor(100000 + Math.random() * 900000)}`);
-      try {
-        window.location.href = mailtoUrl;
-      } catch (err) {
-        console.log('Mailto redirect:', err);
-      }
-    }, 1200);
+    setIsSubmitting(false);
+    setSubmitSuccess(true);
+    setTicketNumber(`ENQ-2026-${Math.floor(100000 + Math.random() * 900000)}`);
+
+    try {
+      window.location.href = mailtoUrl;
+    } catch (err) {
+      console.log('Mailto redirect:', err);
+    }
   };
 
   const handleReset = () => {

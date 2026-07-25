@@ -63,7 +63,7 @@ export default function RfqDrawer({
     onUpdateQty(productId, Math.max(minOrder, num));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (rfqItems.length === 0) {
       alert('Your RFQ basket is empty. Please add items from the Sourcing Hub.');
@@ -74,6 +74,32 @@ export default function RfqDrawer({
 
     const itemsSummary = rfqItems.map(i => `- ${i.product.name} (Qty: ${i.quantity} ${i.product.unit}) @ $${i.product.pricePerUnit}/${i.product.unit}`).join('\n');
     const subtotal = calculateSubtotal();
+
+    const payload = {
+      formType: 'Bulk RFQ Quote Request',
+      name: formData.contactName,
+      company: formData.companyName,
+      email: formData.email,
+      phone: formData.phone,
+      subject: `Roots of America Bulk RFQ Quote Request: ${formData.companyName}`,
+      message: `Destination State: ${formData.shippingState}\nLogistics Speed: ${formData.logisticsSpeed}\nNotes: ${formData.notes || 'None'}\n\nItems:\n${itemsSummary}`,
+      details: {
+        shippingState: formData.shippingState,
+        logisticsSpeed: formData.logisticsSpeed,
+        subtotalUSD: subtotal,
+        itemsCount: rfqItems.length
+      }
+    };
+
+    try {
+      await fetch('/api/enquiry', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+    } catch (err) {
+      console.warn('Backend API RFQ submission dispatch warning:', err);
+    }
 
     const subject = encodeURIComponent(`Roots of America Bulk RFQ Quote Request: ${formData.companyName}`);
     const body = encodeURIComponent(
@@ -94,16 +120,14 @@ export default function RfqDrawer({
 
     const mailtoUrl = `mailto:info@rootsofamerica.com?cc=info@rootofamerica.com&subject=${subject}&body=${body}`;
     
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setSubmitSuccess(true);
-      setRfqNumber(`RFQ-2026-${Math.floor(100000 + Math.random() * 900000)}`);
-      try {
-        window.location.href = mailtoUrl;
-      } catch (err) {
-        console.log('Mailto redirect:', err);
-      }
-    }, 1500);
+    setIsSubmitting(false);
+    setSubmitSuccess(true);
+    setRfqNumber(`RFQ-2026-${Math.floor(100000 + Math.random() * 900000)}`);
+    try {
+      window.location.href = mailtoUrl;
+    } catch (err) {
+      console.log('Mailto redirect:', err);
+    }
   };
 
   const resetDrawer = () => {

@@ -501,6 +501,33 @@ export default function GlobalTradeDesk({ onExploreMore }: GlobalTradeDeskProps 
     setBulletins([newRequirement, ...bulletins]);
     setIsPostOpen(false);
 
+    const payload = {
+      formType: `Global Trade Listing [${formData.type.toUpperCase()}]`,
+      company: formData.companyName,
+      subject: `New Global Trade Listing [${formData.type.toUpperCase()}]: ${formData.itemName} - ${formData.companyName}`,
+      message: `Country: ${formData.country}\nItem: ${formData.itemName}\nCategory: ${formData.productCategory}\nVolume: ${formData.volume} ${formData.unit}\nPrice: $${formData.pricePerUnit}\nIncoterms: ${formData.incoterms}\nPort: ${formData.preferredPort}\nGrade: ${formData.purityGrade}`,
+      details: {
+        type: formData.type,
+        country: formData.country,
+        itemName: formData.itemName,
+        category: formData.productCategory,
+        volume: formData.volume,
+        unit: formData.unit,
+        pricePerUnit: formData.pricePerUnit,
+        incoterms: formData.incoterms
+      }
+    };
+
+    try {
+      fetch('/api/enquiry', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+    } catch (err) {
+      console.warn('Backend API Trade Desk submission dispatch warning:', err);
+    }
+
     const subject = encodeURIComponent(`New Global Trade Listing [${formData.type.toUpperCase()}]: ${formData.itemName} - ${formData.companyName}`);
     const body = encodeURIComponent(
       `NEW TRADE LISTING SUBMISSION\n` +
@@ -556,6 +583,30 @@ export default function GlobalTradeDesk({ onExploreMore }: GlobalTradeDeskProps 
     setHasConnected(true);
 
     if (selectedMatch) {
+      const payload = {
+        formType: 'Trade Negotiation Inquiry',
+        subject: `Trade Negotiation Inquiry: ${selectedMatch.title}`,
+        message: `Listing: ${selectedMatch.title}\nCategory: ${selectedMatch.productCategory}\nProposed Volume: ${negotiatedQty} ${selectedMatch.unit}\nTarget Currency: ${selectedTargetCurrency}\nIncoterms: ${selectedMatch.incoterms}\nNotes: ${negotiationNotes || 'None'}`,
+        details: {
+          listingTitle: selectedMatch.title,
+          category: selectedMatch.productCategory,
+          proposedVolume: negotiatedQty,
+          unit: selectedMatch.unit,
+          currency: selectedTargetCurrency,
+          incoterms: selectedMatch.incoterms
+        }
+      };
+
+      try {
+        fetch('/api/enquiry', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+      } catch (err) {
+        console.warn('Backend API Negotiation submission dispatch warning:', err);
+      }
+
       const subject = encodeURIComponent(`Trade Negotiation Inquiry: ${selectedMatch.title}`);
       const body = encodeURIComponent(
         `NEW TRADE DESK NEGOTIATION\n` +

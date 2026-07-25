@@ -57,7 +57,7 @@ export default function DashboardSim() {
     return base * (1 - disc / 100);
   };
 
-  const handlePlaceOrder = (e: React.FormEvent) => {
+  const handlePlaceOrder = async (e: React.FormEvent) => {
     e.preventDefault();
     const cost = calculateTotalOrderCost();
 
@@ -67,6 +67,29 @@ export default function DashboardSim() {
     }
 
     setIsOrdering(true);
+
+    const payload = {
+      formType: 'Purchase Order / Order Simulation',
+      company: buyer.companyName,
+      subject: `Roots of America Purchase Order: ${buyer.companyName} - ${selectedProduct.name}`,
+      message: `Product: ${selectedProduct.name}\nQuantity: ${orderQty} ${selectedProduct.unit}\nTotal Cost: $${Math.round(cost).toLocaleString()} USD\nDelivery Speed: ${selectedSpeed.toUpperCase()}`,
+      details: {
+        productName: selectedProduct.name,
+        quantity: orderQty,
+        totalCostUSD: cost,
+        deliverySpeed: selectedSpeed
+      }
+    };
+
+    try {
+      await fetch('/api/enquiry', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+    } catch (err) {
+      console.warn('Backend API PO submission dispatch warning:', err);
+    }
 
     const subject = encodeURIComponent(`Roots of America Purchase Order: ${buyer.companyName}`);
     const body = encodeURIComponent(

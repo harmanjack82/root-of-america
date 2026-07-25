@@ -116,9 +116,33 @@ export default function PremiumServicesPage({ onBack }: PremiumServicesPageProps
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setFormSubmitted(true);
+
+    const payload = {
+      formType: `Premium Plan Booking [${selectedPlan.toUpperCase()}]`,
+      name: formData.name,
+      company: formData.company,
+      email: formData.email,
+      phone: formData.phone,
+      subject: `Roots of America Premium Plan Booking [${selectedPlan.toUpperCase()}]: ${formData.company || formData.name}`,
+      message: `Industry: ${formData.industry}\nRequirements: ${formData.message}`,
+      details: {
+        selectedPlan: selectedPlan,
+        industry: formData.industry
+      }
+    };
+
+    try {
+      await fetch('/api/enquiry', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+    } catch (err) {
+      console.warn('Backend API Premium submission dispatch warning:', err);
+    }
 
     const subject = encodeURIComponent(`Premium Service Inquiry [${selectedPlan.toUpperCase()} Plan]: ${formData.company || formData.name}`);
     const body = encodeURIComponent(
