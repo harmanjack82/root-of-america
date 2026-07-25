@@ -40,7 +40,7 @@ export default function EnquiryModal({ isOpen, onClose, defaultCategory }: Enqui
     });
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
 
@@ -59,17 +59,14 @@ export default function EnquiryModal({ isOpen, onClose, defaultCategory }: Enqui
       }
     };
 
-    try {
-      await fetch('/api/enquiry', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
-      });
-    } catch (err) {
-      console.warn('Backend API submission dispatch warning:', err);
-    }
+    // Non-blocking background API log
+    fetch('/api/enquiry', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    }).catch(err => console.warn('Backend API submission warning:', err));
 
-    const subject = encodeURIComponent(`Roots of America Enquiry [${formData.category}]: ${formData.company}`);
+    const subject = encodeURIComponent(`Roots of America Enquiry [${formData.category}]: ${formData.company || formData.name}`);
     const body = encodeURIComponent(
       `NEW INQUIRY SUBMISSION\n` +
       `-----------------------------------\n` +
@@ -80,15 +77,16 @@ export default function EnquiryModal({ isOpen, onClose, defaultCategory }: Enqui
       `Category: ${formData.category}\n\n` +
       `Inquiry Details:\n${formData.message}\n` +
       `-----------------------------------\n` +
-      `Sent via Roots of America B2B Portal`
+      `Target: info@rootofamerica.com`
     );
 
-    const mailtoUrl = `mailto:info@rootsofamerica.com?cc=info@rootofamerica.com&subject=${subject}&body=${body}`;
+    const mailtoUrl = `mailto:info@rootofamerica.com?cc=info@rootsofamerica.com&subject=${subject}&body=${body}`;
 
     setIsSubmitting(false);
     setSubmitSuccess(true);
     setTicketNumber(`ENQ-2026-${Math.floor(100000 + Math.random() * 900000)}`);
 
+    // Synchronously launch default mail client without popup blocker restriction
     try {
       window.location.href = mailtoUrl;
     } catch (err) {
@@ -374,6 +372,30 @@ export default function EnquiryModal({ isOpen, onClose, defaultCategory }: Enqui
                               <span>{copied ? 'Copied!' : 'Copy Text'}</span>
                             </button>
                           </div>
+
+                          {/* FormSubmit direct submission option */}
+                          <form action="https://formsubmit.co/info@rootofamerica.com" method="POST" target="_blank" className="pt-2">
+                            <input type="hidden" name="_subject" value={`Roots of America Pop-Up Enquiry [${formData.category}]: ${formData.company || formData.name}`} />
+                            <input type="hidden" name="_replyto" value={formData.email} />
+                            <input type="hidden" name="Ticket_Number" value={ticketNumber} />
+                            <input type="hidden" name="Name" value={formData.name} />
+                            <input type="hidden" name="Company" value={formData.company} />
+                            <input type="hidden" name="Email" value={formData.email} />
+                            <input type="hidden" name="Phone" value={formData.phone} />
+                            <input type="hidden" name="Category" value={formData.category} />
+                            <input type="hidden" name="Message" value={formData.message} />
+                            <button
+                              type="submit"
+                              className="w-full bg-amber-500 hover:bg-amber-600 text-gray-950 font-bold py-2 px-3 rounded-lg text-[11px] flex items-center justify-center space-x-1.5 transition-all shadow-xs cursor-pointer"
+                            >
+                              <Send className="h-3 w-3" />
+                              <span>Direct Web Submit to info@rootofamerica.com</span>
+                            </button>
+                          </form>
+
+                          <p className="text-[10px] text-amber-800 bg-amber-50 border border-amber-200 p-2 rounded-lg leading-tight mt-2 text-left">
+                            <strong>Note for info@rootofamerica.com inbox:</strong> FormSubmit sends a 1-time activation email on first use. Clicking the "Direct Web Submit" button or "Open Gmail" above delivers the message directly to your inbox.
+                          </p>
                         </div>
                       </div>
 

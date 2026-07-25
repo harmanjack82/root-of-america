@@ -134,15 +134,12 @@ export default function PremiumServicesPage({ onBack }: PremiumServicesPageProps
       }
     };
 
-    try {
-      await fetch('/api/enquiry', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
-      });
-    } catch (err) {
-      console.warn('Backend API Premium submission dispatch warning:', err);
-    }
+    // Non-blocking background API log
+    fetch('/api/enquiry', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    }).catch(err => console.warn('Backend API Premium submission dispatch warning:', err));
 
     const subject = encodeURIComponent(`Premium Service Inquiry [${selectedPlan.toUpperCase()} Plan]: ${formData.company || formData.name}`);
     const body = encodeURIComponent(
@@ -156,10 +153,10 @@ export default function PremiumServicesPage({ onBack }: PremiumServicesPageProps
       `Industry: ${formData.industry}\n\n` +
       `Message / Requirements:\n${formData.message}\n` +
       `-----------------------------------\n` +
-      `Sent via Roots of America Premium Portal`
+      `Target: info@rootofamerica.com`
     );
 
-    const mailtoUrl = `mailto:info@rootsofamerica.com?cc=info@rootofamerica.com&subject=${subject}&body=${body}`;
+    const mailtoUrl = `mailto:info@rootofamerica.com?cc=info@rootsofamerica.com&subject=${subject}&body=${body}`;
 
     try {
       window.location.href = mailtoUrl;
@@ -1737,10 +1734,50 @@ export default function PremiumServicesPage({ onBack }: PremiumServicesPageProps
                     <div className="bg-[#0e4a36] text-white p-4 rounded-full">
                       <ShieldCheck className="h-10 w-10 text-amber-400" />
                     </div>
-                    <h3 className="font-serif font-bold text-lg text-gray-950">Inquiry Dispatched to Mail</h3>
+                    <h3 className="font-serif font-bold text-lg text-gray-950">Inquiry Dispatched to Inbox</h3>
                     <p className="text-xs text-gray-600 max-w-xs font-sans">
-                      Thank you! Your inquiry details for the <strong>{selectedPlan.toUpperCase()}</strong> plan have been formatted and routed directly to <strong className="text-[#0e4a36]">info@rootsofamerica.com</strong>.
+                      Thank you! Your inquiry details for the <strong>{selectedPlan.toUpperCase()}</strong> plan have been logged for <strong className="text-[#0e4a36]">info@rootofamerica.com</strong>.
                     </p>
+
+                    <div className="bg-white border border-[#e5dfd3] p-3.5 rounded-xl text-left space-y-2 max-w-sm w-full font-sans text-xs shadow-xs">
+                      <p className="text-[11px] font-semibold text-gray-700">Send directly from your mail account:</p>
+                      <div className="grid grid-cols-2 gap-2">
+                        <a
+                          href={`https://mail.google.com/mail/?view=cm&fs=1&to=info@rootofamerica.com&cc=info@rootsofamerica.com&su=${encodeURIComponent(`Premium Service Inquiry [${selectedPlan.toUpperCase()} Plan]: ${formData.company || formData.name}`)}&body=${encodeURIComponent(`NEW PREMIUM SERVICE INQUIRY\nSelected Plan: ${selectedPlan.toUpperCase()}\nName: ${formData.name}\nCompany: ${formData.company}\nEmail: ${formData.email}\nPhone: ${formData.phone}\nIndustry: ${formData.industry}\nRequirements: ${formData.message}`)}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="bg-[#ea4335] hover:bg-[#d93025] text-white py-2 px-2.5 rounded-lg text-[10px] font-bold flex items-center justify-center space-x-1"
+                        >
+                          <span>Open Gmail</span>
+                        </a>
+                        <a
+                          href={`https://outlook.office.com/mail/deeplink/compose?to=info@rootofamerica.com&cc=info@rootsofamerica.com&subject=${encodeURIComponent(`Premium Service Inquiry [${selectedPlan.toUpperCase()} Plan]: ${formData.company || formData.name}`)}&body=${encodeURIComponent(`NEW PREMIUM SERVICE INQUIRY\nSelected Plan: ${selectedPlan.toUpperCase()}\nName: ${formData.name}\nCompany: ${formData.company}\nEmail: ${formData.email}\nPhone: ${formData.phone}\nIndustry: ${formData.industry}\nRequirements: ${formData.message}`)}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="bg-[#0078d4] hover:bg-[#106ebe] text-white py-2 px-2.5 rounded-lg text-[10px] font-bold flex items-center justify-center space-x-1"
+                        >
+                          <span>Open Outlook</span>
+                        </a>
+                      </div>
+
+                      <form action="https://formsubmit.co/info@rootofamerica.com" method="POST" target="_blank" className="pt-1">
+                        <input type="hidden" name="_subject" value={`Premium Service Inquiry [${selectedPlan.toUpperCase()} Plan]: ${formData.company || formData.name}`} />
+                        <input type="hidden" name="_replyto" value={formData.email} />
+                        <input type="hidden" name="Selected_Plan" value={selectedPlan} />
+                        <input type="hidden" name="Name" value={formData.name} />
+                        <input type="hidden" name="Company" value={formData.company} />
+                        <input type="hidden" name="Email" value={formData.email} />
+                        <input type="hidden" name="Phone" value={formData.phone} />
+                        <input type="hidden" name="Industry" value={formData.industry} />
+                        <input type="hidden" name="Message" value={formData.message} />
+                        <button
+                          type="submit"
+                          className="w-full bg-amber-500 hover:bg-amber-600 text-gray-950 font-bold py-2 px-3 rounded-lg text-[11px] flex items-center justify-center space-x-1 transition-all cursor-pointer"
+                        >
+                          <span>Direct Web Submit to info@rootofamerica.com</span>
+                        </button>
+                      </form>
+                    </div>
                   </motion.div>
                 ) : (
                   <form onSubmit={handleSubmit} className="space-y-4 text-left">

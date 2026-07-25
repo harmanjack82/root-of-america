@@ -81,15 +81,12 @@ export default function DashboardSim() {
       }
     };
 
-    try {
-      await fetch('/api/enquiry', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
-      });
-    } catch (err) {
-      console.warn('Backend API PO submission dispatch warning:', err);
-    }
+    // Non-blocking background API log
+    fetch('/api/enquiry', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    }).catch(err => console.warn('Backend API PO submission dispatch warning:', err));
 
     const subject = encodeURIComponent(`Roots of America Purchase Order: ${buyer.companyName}`);
     const body = encodeURIComponent(
@@ -101,10 +98,10 @@ export default function DashboardSim() {
       `Total Cost: $${Math.round(cost).toLocaleString()} USD\n` +
       `Delivery Speed: ${selectedSpeed.toUpperCase()}\n` +
       `-----------------------------------\n` +
-      `Dispatched to info@rootsofamerica.com`
+      `Target: info@rootofamerica.com`
     );
 
-    const mailtoUrl = `mailto:info@rootsofamerica.com?cc=info@rootofamerica.com&subject=${subject}&body=${body}`;
+    const mailtoUrl = `mailto:info@rootofamerica.com?cc=info@rootsofamerica.com&subject=${subject}&body=${body}`;
 
     // Simulate ordering process
     setTimeout(() => {

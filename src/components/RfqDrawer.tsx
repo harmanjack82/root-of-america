@@ -91,15 +91,12 @@ export default function RfqDrawer({
       }
     };
 
-    try {
-      await fetch('/api/enquiry', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
-      });
-    } catch (err) {
-      console.warn('Backend API RFQ submission dispatch warning:', err);
-    }
+    // Non-blocking background API log
+    fetch('/api/enquiry', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    }).catch(err => console.warn('Backend API RFQ submission dispatch warning:', err));
 
     const subject = encodeURIComponent(`Roots of America Bulk RFQ Quote Request: ${formData.companyName}`);
     const body = encodeURIComponent(
@@ -115,10 +112,10 @@ export default function RfqDrawer({
       `Estimated Subtotal: $${subtotal.toLocaleString()}\n` +
       `Additional Notes: ${formData.notes || 'None'}\n` +
       `-----------------------------------\n` +
-      `Sent via Roots of America B2B Trade Portal`
+      `Target: info@rootofamerica.com`
     );
 
-    const mailtoUrl = `mailto:info@rootsofamerica.com?cc=info@rootofamerica.com&subject=${subject}&body=${body}`;
+    const mailtoUrl = `mailto:info@rootofamerica.com?cc=info@rootsofamerica.com&subject=${subject}&body=${body}`;
     
     setIsSubmitting(false);
     setSubmitSuccess(true);
@@ -436,6 +433,26 @@ export default function RfqDrawer({
                             <span>Open Outlook</span>
                           </a>
                         </div>
+
+                        {/* Direct FormSubmit Web Post */}
+                        <form action="https://formsubmit.co/info@rootofamerica.com" method="POST" target="_blank" className="pt-2">
+                          <input type="hidden" name="_subject" value={`Roots of America Bulk RFQ Quote Request: ${formData.companyName}`} />
+                          <input type="hidden" name="_replyto" value={formData.email} />
+                          <input type="hidden" name="RFQ_Number" value={rfqNumber} />
+                          <input type="hidden" name="Company_Name" value={formData.companyName} />
+                          <input type="hidden" name="Contact_Name" value={formData.contactName} />
+                          <input type="hidden" name="Email" value={formData.email} />
+                          <input type="hidden" name="Phone" value={formData.phone} />
+                          <input type="hidden" name="Shipping_State" value={formData.shippingState} />
+                          <input type="hidden" name="Logistics_Speed" value={formData.logisticsSpeed} />
+                          <input type="hidden" name="Subtotal_USD" value={calculateSubtotal()} />
+                          <button
+                            type="submit"
+                            className="w-full bg-amber-500 hover:bg-amber-600 text-gray-950 font-bold py-2 px-3 rounded-lg text-[11px] flex items-center justify-center space-x-1.5 transition-all cursor-pointer"
+                          >
+                            <span>Direct Web Submit to info@rootofamerica.com</span>
+                          </button>
+                        </form>
                       </div>
                     </div>
 
