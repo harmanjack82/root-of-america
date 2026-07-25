@@ -459,6 +459,27 @@ export default function GlobalTradeHub({ onBack }: GlobalTradeHubProps) {
     if (!negotiationNotes.trim()) return;
 
     const userMsg = negotiationNotes;
+
+    const payload = {
+      formType: 'Trade Hub Direct Chat Message',
+      subject: `New Trade Hub Chat Message: ${selectedMatch?.companyName || 'Sourcing Partner'}`,
+      message: userMsg,
+      details: {
+        partnerCompany: selectedMatch?.companyName,
+        partnerListing: selectedMatch?.itemName
+      }
+    };
+
+    try {
+      fetch('/api/enquiry', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+    } catch (err) {
+      console.warn('Backend API Trade Hub chat dispatch warning:', err);
+    }
+
     setChatLog(prev => [...prev, { sender: 'user', text: userMsg, time: 'Just Now' }]);
     setNegotiationNotes('');
     setIsTyping(true);
