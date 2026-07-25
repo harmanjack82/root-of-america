@@ -516,11 +516,11 @@ export default function GlobalTradeDesk({ onExploreMore }: GlobalTradeDeskProps 
       `Preferred Port: ${formData.preferredPort}\n` +
       `Purity/Grade: ${formData.purityGrade}\n` +
       `-----------------------------------\n` +
-      `Dispatched to info@rootofamerica.com`
+      `Dispatched to info@rootsofamerica.com`
     );
 
     try {
-      window.location.href = `mailto:info@rootofamerica.com?subject=${subject}&body=${body}`;
+      window.location.href = `mailto:info@rootsofamerica.com?cc=info@rootofamerica.com&subject=${subject}&body=${body}`;
     } catch (err) {
       console.log('Mailto error:', err);
     }
@@ -567,11 +567,11 @@ export default function GlobalTradeDesk({ onExploreMore }: GlobalTradeDeskProps 
         `Incoterms: ${selectedMatch.incoterms}\n` +
         `Additional Notes: ${negotiationNotes || 'None'}\n` +
         `-----------------------------------\n` +
-        `Dispatched to info@rootofamerica.com`
+        `Dispatched to info@rootsofamerica.com`
       );
 
       try {
-        window.location.href = `mailto:info@rootofamerica.com?subject=${subject}&body=${body}`;
+        window.location.href = `mailto:info@rootsofamerica.com?cc=info@rootofamerica.com&subject=${subject}&body=${body}`;
       } catch (err) {
         console.log('Mailto error:', err);
       }

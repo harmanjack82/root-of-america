@@ -91,7 +91,7 @@ export default function Footer({ onScrollTo, setActiveView, setDisclaimerSection
               </div>
               <div className="flex items-center space-x-2">
                 <Mail className="h-4 w-4 text-amber-500 shrink-0" />
-                <span>Info@rootofamerica.com</span>
+                <a href="mailto:info@rootsofamerica.com" className="hover:text-amber-400 transition-colors">info@rootsofamerica.com</a>
               </div>
               <div className="pt-2 border-t border-gray-800 text-[11px] text-gray-400">
                 <span className="text-amber-400 font-bold block mb-0.5">Payment Company:</span>

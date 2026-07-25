@@ -135,7 +135,7 @@ export default function PremiumServicesPage({ onBack }: PremiumServicesPageProps
       `Sent via Roots of America Premium Portal`
     );
 
-    const mailtoUrl = `mailto:info@rootofamerica.com?subject=${subject}&body=${body}`;
+    const mailtoUrl = `mailto:info@rootsofamerica.com?cc=info@rootofamerica.com&subject=${subject}&body=${body}`;
 
     try {
       window.location.href = mailtoUrl;
@@ -1715,7 +1715,7 @@ export default function PremiumServicesPage({ onBack }: PremiumServicesPageProps
                     </div>
                     <h3 className="font-serif font-bold text-lg text-gray-950">Inquiry Dispatched to Mail</h3>
                     <p className="text-xs text-gray-600 max-w-xs font-sans">
-                      Thank you! Your inquiry details for the <strong>{selectedPlan.toUpperCase()}</strong> plan have been formatted and routed directly to <strong className="text-[#0e4a36]">info@rootofamerica.com</strong>.
+                      Thank you! Your inquiry details for the <strong>{selectedPlan.toUpperCase()}</strong> plan have been formatted and routed directly to <strong className="text-[#0e4a36]">info@rootsofamerica.com</strong>.
                     </p>
                   </motion.div>
                 ) : (

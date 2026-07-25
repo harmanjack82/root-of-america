@@ -78,10 +78,10 @@ export default function DashboardSim() {
       `Total Cost: $${Math.round(cost).toLocaleString()} USD\n` +
       `Delivery Speed: ${selectedSpeed.toUpperCase()}\n` +
       `-----------------------------------\n` +
-      `Dispatched to info@rootofamerica.com`
+      `Dispatched to info@rootsofamerica.com`
     );
 
-    const mailtoUrl = `mailto:info@rootofamerica.com?subject=${subject}&body=${body}`;
+    const mailtoUrl = `mailto:info@rootsofamerica.com?cc=info@rootofamerica.com&subject=${subject}&body=${body}`;
 
     // Simulate ordering process
     setTimeout(() => {

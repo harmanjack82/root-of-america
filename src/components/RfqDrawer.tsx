@@ -92,7 +92,7 @@ export default function RfqDrawer({
       `Sent via Roots of America B2B Trade Portal`
     );
 
-    const mailtoUrl = `mailto:info@rootofamerica.com?subject=${subject}&body=${body}`;
+    const mailtoUrl = `mailto:info@rootsofamerica.com?cc=info@rootofamerica.com&subject=${subject}&body=${body}`;
     
     setTimeout(() => {
       setIsSubmitting(false);
@@ -359,7 +359,7 @@ export default function RfqDrawer({
 
                     <div className="space-y-2">
                       <h4 className="text-xl font-sans font-bold text-[#1c2421]">RFQ Dispatched to Company Mail</h4>
-                      <p className="text-xs text-gray-500">Your wholesale contract request has been formatted and sent directly to <strong className="text-[#0e4a36]">info@rootofamerica.com</strong>.</p>
+                      <p className="text-xs text-gray-500">Your wholesale contract request has been formatted and sent directly to <strong className="text-[#0e4a36]">info@rootsofamerica.com</strong>.</p>
                     </div>
 
                     {/* Receipt breakdown Card */}
@@ -388,13 +388,13 @@ export default function RfqDrawer({
                         </div>
                         <div className="flex justify-between">
                           <span>Routed Mail:</span>
-                          <span className="font-sans font-bold text-[#0e4a36]">info@rootofamerica.com</span>
+                          <span className="font-sans font-bold text-[#0e4a36]">info@rootsofamerica.com</span>
                         </div>
                       </div>
 
                       <div className="border-t pt-2 mt-2 bg-amber-50/50 p-2.5 rounded-xl border border-amber-200 text-[10px] leading-relaxed text-amber-800 flex items-start space-x-2">
                         <Clock className="h-4 w-4 text-amber-600 mt-0.5 flex-shrink-0" />
-                        <span>Mail prompt dispatched. You can also email us directly at <a href="mailto:info@rootofamerica.com" className="font-bold underline text-[#0e4a36]">info@rootofamerica.com</a> for urgent procurement needs.</span>
+                        <span>Mail prompt dispatched. You can also email us directly at <a href="mailto:info@rootsofamerica.com" className="font-bold underline text-[#0e4a36]">info@rootsofamerica.com</a> for urgent procurement needs.</span>
                       </div>
                     </div>
 

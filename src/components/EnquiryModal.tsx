@@ -57,7 +57,7 @@ export default function EnquiryModal({ isOpen, onClose, defaultCategory }: Enqui
       `Sent via Roots of America B2B Portal`
     );
 
-    const mailtoUrl = `mailto:info@rootofamerica.com?subject=${subject}&body=${body}`;
+    const mailtoUrl = `mailto:info@rootsofamerica.com?cc=info@rootofamerica.com&subject=${subject}&body=${body}`;
 
     setTimeout(() => {
       setIsSubmitting(false);
@@ -275,7 +275,7 @@ export default function EnquiryModal({ isOpen, onClose, defaultCategory }: Enqui
 
                       <div className="space-y-1">
                         <h4 className="text-lg font-sans font-extrabold text-[#1c2421]">Inquiry Dispatched</h4>
-                        <p className="text-xs text-gray-500 px-4">Your inquiry details have been routed directly to <strong className="text-[#0e4a36]">info@rootofamerica.com</strong>.</p>
+                        <p className="text-xs text-gray-500 px-4">Your inquiry details have been routed directly to <strong className="text-[#0e4a36]">info@rootsofamerica.com</strong>.</p>
                       </div>
 
                       {/* Detail card */}
@@ -299,12 +299,12 @@ export default function EnquiryModal({ isOpen, onClose, defaultCategory }: Enqui
                           </div>
                           <div className="flex justify-between">
                             <span>Target Mail:</span>
-                            <span className="font-sans font-bold text-[#0e4a36]">info@rootofamerica.com</span>
+                            <span className="font-sans font-bold text-[#0e4a36]">info@rootsofamerica.com</span>
                           </div>
                         </div>
                         <div className="border-t pt-2 mt-2 bg-amber-50/50 p-2 border border-amber-200 text-[10px] leading-relaxed text-amber-800 flex items-start space-x-2">
                           <Clock className="h-3.5 w-3.5 text-amber-600 mt-0.5 flex-shrink-0" />
-                          <span>An email prompt was launched. You can also send directly to <a href="mailto:info@rootofamerica.com" className="font-bold underline text-[#0e4a36]">info@rootofamerica.com</a>.</span>
+                          <span>An email prompt was launched. You can also send directly to <a href="mailto:info@rootsofamerica.com" className="font-bold underline text-[#0e4a36]">info@rootsofamerica.com</a>.</span>
                         </div>
                       </div>
 
