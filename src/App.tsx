@@ -24,6 +24,7 @@ import GlobalTradeDesk from './components/GlobalTradeDesk';
 import CompliancePanel from './components/CompliancePanel';
 import RfqDrawer from './components/RfqDrawer';
 import EnquiryModal from './components/EnquiryModal';
+import EnquiriesPortalModal from './components/EnquiriesPortalModal';
 import WhatsAppWidget from './components/WhatsAppWidget';
 import Footer from './components/Footer';
 import DashboardSim from './components/DashboardSim';
@@ -43,6 +44,7 @@ export default function App() {
   const [rfqItems, setRfqItems] = useState<RfqItem[]>([]);
   const [isRfqOpen, setIsRfqOpen] = useState<boolean>(false);
   const [isEnquiryOpen, setIsEnquiryOpen] = useState<boolean>(false);
+  const [isEnquiriesPortalOpen, setIsEnquiriesPortalOpen] = useState<boolean>(false);
   const [enquiryCategory, setEnquiryCategory] = useState<string | undefined>(undefined);
   const [activeView, setActiveView] = useState<'landing' | 'dashboard' | 'trade-desk' | 'about-us' | 'disclaimer' | 'refund-policy' | 'privacy-policy' | 'terms-of-trade' | 'premium-services'>('landing');
   const [disclaimerSection, setDisclaimerSection] = useState<string | undefined>(undefined);
@@ -422,11 +424,18 @@ export default function App() {
         defaultCategory={enquiryCategory}
       />
 
+      {/* Form Inquiries Inbox Portal */}
+      <EnquiriesPortalModal
+        isOpen={isEnquiriesPortalOpen}
+        onClose={() => setIsEnquiriesPortalOpen(false)}
+      />
+
       {/* Footer */}
       <Footer 
         onScrollTo={handleScrollTo}
         setActiveView={setActiveView}
         setDisclaimerSection={setDisclaimerSection}
+        onOpenEnquiriesPortal={() => setIsEnquiriesPortalOpen(true)}
       />
 
       {/* WhatsApp Chat Support Widget */}

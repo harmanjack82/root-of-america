@@ -15,9 +15,10 @@ interface FooterProps {
   onScrollTo: (elementId: string) => void;
   setActiveView: (view: 'landing' | 'dashboard' | 'trade-desk' | 'about-us' | 'disclaimer' | 'refund-policy' | 'privacy-policy' | 'terms-of-trade') => void;
   setDisclaimerSection?: (section: string | undefined) => void;
+  onOpenEnquiriesPortal?: () => void;
 }
 
-export default function Footer({ onScrollTo, setActiveView, setDisclaimerSection }: FooterProps) {
+export default function Footer({ onScrollTo, setActiveView, setDisclaimerSection, onOpenEnquiriesPortal }: FooterProps) {
   const currentYear = new Date().getFullYear();
   const [isExpanded, setIsExpanded] = React.useState(false);
 
@@ -91,7 +92,7 @@ export default function Footer({ onScrollTo, setActiveView, setDisclaimerSection
               </div>
               <div className="flex items-center space-x-2">
                 <Mail className="h-4 w-4 text-amber-500 shrink-0" />
-                <a href="mailto:info@rootsofamerica.com" className="hover:text-amber-400 transition-colors">info@rootsofamerica.com</a>
+                <a href="mailto:info@rootofamerica.com" className="hover:text-amber-400 transition-colors font-bold text-white">info@rootofamerica.com</a>
               </div>
               <div className="pt-2 border-t border-gray-800 text-[11px] text-gray-400">
                 <span className="text-amber-400 font-bold block mb-0.5">Payment Company:</span>
@@ -104,6 +105,17 @@ export default function Footer({ onScrollTo, setActiveView, setDisclaimerSection
           <div className="lg:col-span-2 text-left space-y-4">
             <h4 className="text-xs font-mono font-bold text-white uppercase tracking-widest border-b border-gray-800 pb-2">Quick Links</h4>
             <ul className="space-y-2.5 text-sm">
+              {onOpenEnquiriesPortal && (
+                <li>
+                  <button 
+                    onClick={onOpenEnquiriesPortal}
+                    className="text-amber-400 hover:text-amber-300 font-bold flex items-center space-x-1 transition-colors cursor-pointer"
+                  >
+                    <Mail className="h-3.5 w-3.5" />
+                    <span>Inquiries Inbox</span>
+                  </button>
+                </li>
+              )}
               <li>
                 <button onClick={() => setActiveView('about-us')} className="hover:text-white transition-colors cursor-pointer">
                   About Us

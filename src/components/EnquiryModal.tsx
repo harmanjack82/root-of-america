@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { X, Send, CheckCircle, Building, User, Mail, Phone, MessageSquare, Clock } from 'lucide-react';
+import { X, Send, CheckCircle, Building, User, Mail, Phone, MessageSquare, Clock, Copy, ExternalLink } from 'lucide-react';
 
 interface EnquiryModalProps {
   isOpen: boolean;
@@ -21,6 +21,7 @@ export default function EnquiryModal({ isOpen, onClose, defaultCategory }: Enqui
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const [ticketNumber, setTicketNumber] = useState('');
+  const [copied, setCopied] = useState(false);
 
   // Update category when modal is opened or defaultCategory changes
   React.useEffect(() => {
@@ -291,19 +292,19 @@ export default function EnquiryModal({ isOpen, onClose, defaultCategory }: Enqui
                       initial={{ opacity: 0, scale: 0.95 }}
                       animate={{ opacity: 1, scale: 1 }}
                       exit={{ opacity: 0 }}
-                      className="py-6 text-center space-y-5"
+                      className="py-4 text-center space-y-4"
                     >
-                      <div className="mx-auto h-14 w-14 bg-emerald-100 rounded-full flex items-center justify-center text-emerald-600">
-                        <CheckCircle className="h-8 w-8" />
+                      <div className="mx-auto h-12 w-12 bg-emerald-100 rounded-full flex items-center justify-center text-emerald-600">
+                        <CheckCircle className="h-7 w-7" />
                       </div>
 
                       <div className="space-y-1">
-                        <h4 className="text-lg font-sans font-extrabold text-[#1c2421]">Inquiry Dispatched</h4>
-                        <p className="text-xs text-gray-500 px-4">Your inquiry details have been routed directly to <strong className="text-[#0e4a36]">info@rootsofamerica.com</strong>.</p>
+                        <h4 className="text-lg font-sans font-extrabold text-[#1c2421]">Inquiry Dispatched to Inbox</h4>
+                        <p className="text-xs text-gray-600 px-4">Your pop-up inquiry has been processed and logged for <strong className="text-[#0e4a36]">info@rootofamerica.com</strong>.</p>
                       </div>
 
                       {/* Detail card */}
-                      <div className="bg-white border border-[#e5dfd3] p-4 rounded-xl text-left space-y-2.5 font-mono text-[11px] text-gray-500 mx-4">
+                      <div className="bg-white border border-[#e5dfd3] p-4 rounded-xl text-left space-y-2.5 font-mono text-[11px] text-gray-600 mx-1 shadow-sm">
                         <div className="flex justify-between border-b pb-2 text-xs font-bold text-[#1c2421]">
                           <span>INQUIRY TICKET</span>
                           <span className="text-[#0e4a36]">{ticketNumber}</span>
@@ -322,13 +323,57 @@ export default function EnquiryModal({ isOpen, onClose, defaultCategory }: Enqui
                             <span className="font-sans font-semibold text-[#1c2421]">{formData.category}</span>
                           </div>
                           <div className="flex justify-between">
-                            <span>Target Mail:</span>
-                            <span className="font-sans font-bold text-[#0e4a36]">info@rootsofamerica.com</span>
+                            <span>Target Email:</span>
+                            <span className="font-sans font-bold text-[#0e4a36]">info@rootofamerica.com</span>
                           </div>
                         </div>
-                        <div className="border-t pt-2 mt-2 bg-amber-50/50 p-2 border border-amber-200 text-[10px] leading-relaxed text-amber-800 flex items-start space-x-2">
-                          <Clock className="h-3.5 w-3.5 text-amber-600 mt-0.5 flex-shrink-0" />
-                          <span>An email prompt was launched. You can also send directly to <a href="mailto:info@rootsofamerica.com" className="font-bold underline text-[#0e4a36]">info@rootsofamerica.com</a>.</span>
+
+                        {/* Direct Email Action Options */}
+                        <div className="border-t pt-3 mt-2 space-y-2 font-sans">
+                          <p className="text-[11px] font-semibold text-gray-700">Choose your preferred email client to confirm dispatch:</p>
+                          <div className="grid grid-cols-2 gap-2">
+                            <a
+                              href={`https://mail.google.com/mail/?view=cm&fs=1&to=info@rootofamerica.com&cc=info@rootsofamerica.com&su=${encodeURIComponent(`Roots of America Inquiry [${formData.category}]: ${formData.company || formData.name}`)}&body=${encodeURIComponent(`NEW POP-UP INQUIRY\nTicket: ${ticketNumber}\nName: ${formData.name}\nCompany: ${formData.company}\nEmail: ${formData.email}\nPhone: ${formData.phone}\nCategory: ${formData.category}\nMessage: ${formData.message}`)}`}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="bg-[#ea4335] hover:bg-[#d93025] text-white py-2 px-2.5 rounded-lg text-[10px] font-bold flex items-center justify-center space-x-1 transition-all"
+                            >
+                              <ExternalLink className="h-3 w-3" />
+                              <span>Open Gmail</span>
+                            </a>
+                            <a
+                              href={`https://outlook.office.com/mail/deeplink/compose?to=info@rootofamerica.com&cc=info@rootsofamerica.com&subject=${encodeURIComponent(`Roots of America Inquiry [${formData.category}]: ${formData.company || formData.name}`)}&body=${encodeURIComponent(`NEW POP-UP INQUIRY\nTicket: ${ticketNumber}\nName: ${formData.name}\nCompany: ${formData.company}\nEmail: ${formData.email}\nPhone: ${formData.phone}\nCategory: ${formData.category}\nMessage: ${formData.message}`)}`}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="bg-[#0078d4] hover:bg-[#106ebe] text-white py-2 px-2.5 rounded-lg text-[10px] font-bold flex items-center justify-center space-x-1 transition-all"
+                            >
+                              <ExternalLink className="h-3 w-3" />
+                              <span>Open Outlook</span>
+                            </a>
+                          </div>
+
+                          <div className="flex items-center space-x-2 pt-1">
+                            <a
+                              href={`mailto:info@rootofamerica.com?cc=info@rootsofamerica.com&subject=${encodeURIComponent(`Roots of America Inquiry [${formData.category}]: ${formData.company || formData.name}`)}&body=${encodeURIComponent(`NEW POP-UP INQUIRY\nTicket: ${ticketNumber}\nName: ${formData.name}\nCompany: ${formData.company}\nEmail: ${formData.email}\nPhone: ${formData.phone}\nCategory: ${formData.category}\nMessage: ${formData.message}`)}`}
+                              className="flex-1 bg-[#0e4a36] hover:bg-[#0b3c2a] text-white py-2 px-2 rounded-lg text-[10px] font-bold flex items-center justify-center space-x-1 transition-all"
+                            >
+                              <Mail className="h-3 w-3" />
+                              <span>Default App</span>
+                            </a>
+                            <button
+                              type="button"
+                              onClick={() => {
+                                const text = `NEW INQUIRY (${ticketNumber})\nName: ${formData.name}\nCompany: ${formData.company}\nEmail: ${formData.email}\nPhone: ${formData.phone}\nCategory: ${formData.category}\nMessage: ${formData.message}`;
+                                navigator.clipboard.writeText(text);
+                                setCopied(true);
+                                setTimeout(() => setCopied(false), 2500);
+                              }}
+                              className="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-800 border border-gray-300 py-2 px-2 rounded-lg text-[10px] font-bold flex items-center justify-center space-x-1 transition-all"
+                            >
+                              {copied ? <CheckCircle className="h-3 w-3 text-emerald-600" /> : <Copy className="h-3 w-3 text-gray-600" />}
+                              <span>{copied ? 'Copied!' : 'Copy Text'}</span>
+                            </button>
+                          </div>
                         </div>
                       </div>
 

@@ -1,0 +1,19 @@
+[
+  {
+    "id": "ENQ-1784986573282-576",
+    "timestamp": "2026-07-25T13:36:13.282Z",
+    "formType": "Pop-Up Enquiry",
+    "name": "Alex Rivers",
+    "email": "alex@globaltrading.com",
+    "phone": "N/A",
+    "company": "Global Trading Co",
+    "subject": "New Website Submission",
+    "message": "Testing dispatch to info@rootofamerica.com",
+    "details": {},
+    "recipients": [
+      "info@rootofamerica.com",
+      "info@rootsofamerica.com"
+    ],
+    "deliveryStatus": "Dispatched to Backend & Email Endpoints"
+  }
+]

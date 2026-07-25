@@ -383,7 +383,7 @@ export default function RfqDrawer({
 
                     <div className="space-y-2">
                       <h4 className="text-xl font-sans font-bold text-[#1c2421]">RFQ Dispatched to Company Mail</h4>
-                      <p className="text-xs text-gray-500">Your wholesale contract request has been formatted and sent directly to <strong className="text-[#0e4a36]">info@rootsofamerica.com</strong>.</p>
+                      <p className="text-xs text-gray-500">Your wholesale contract request has been formatted and sent directly to <strong className="text-[#0e4a36]">info@rootofamerica.com</strong>.</p>
                     </div>
 
                     {/* Receipt breakdown Card */}
@@ -411,14 +411,31 @@ export default function RfqDrawer({
                           <span className="font-sans font-bold text-emerald-700">${calculateSubtotal().toLocaleString()} USD</span>
                         </div>
                         <div className="flex justify-between">
-                          <span>Routed Mail:</span>
-                          <span className="font-sans font-bold text-[#0e4a36]">info@rootsofamerica.com</span>
+                          <span>Target Email:</span>
+                          <span className="font-sans font-bold text-[#0e4a36]">info@rootofamerica.com</span>
                         </div>
                       </div>
 
-                      <div className="border-t pt-2 mt-2 bg-amber-50/50 p-2.5 rounded-xl border border-amber-200 text-[10px] leading-relaxed text-amber-800 flex items-start space-x-2">
-                        <Clock className="h-4 w-4 text-amber-600 mt-0.5 flex-shrink-0" />
-                        <span>Mail prompt dispatched. You can also email us directly at <a href="mailto:info@rootsofamerica.com" className="font-bold underline text-[#0e4a36]">info@rootsofamerica.com</a> for urgent procurement needs.</span>
+                      <div className="border-t pt-3 mt-2 space-y-2 font-sans">
+                        <p className="text-[11px] font-semibold text-gray-700">Send or confirm via your webmail app:</p>
+                        <div className="grid grid-cols-2 gap-2">
+                          <a
+                            href={`https://mail.google.com/mail/?view=cm&fs=1&to=info@rootofamerica.com&cc=info@rootsofamerica.com&su=${encodeURIComponent(`Roots of America Bulk RFQ Quote Request: ${formData.companyName}`)}&body=${encodeURIComponent(`NEW BULK RFQ SUBMISSION\nRFQ #: ${rfqNumber}\nCompany: ${formData.companyName}\nContact: ${formData.contactName}\nEmail: ${formData.email}\nPhone: ${formData.phone}\nState: ${formData.shippingState}\nSubtotal: $${calculateSubtotal().toLocaleString()} USD`)}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="bg-[#ea4335] hover:bg-[#d93025] text-white py-2 px-2.5 rounded-lg text-[10px] font-bold flex items-center justify-center space-x-1 transition-all"
+                          >
+                            <span>Open Gmail</span>
+                          </a>
+                          <a
+                            href={`https://outlook.office.com/mail/deeplink/compose?to=info@rootofamerica.com&cc=info@rootsofamerica.com&subject=${encodeURIComponent(`Roots of America Bulk RFQ Quote Request: ${formData.companyName}`)}&body=${encodeURIComponent(`NEW BULK RFQ SUBMISSION\nRFQ #: ${rfqNumber}\nCompany: ${formData.companyName}\nContact: ${formData.contactName}\nEmail: ${formData.email}\nPhone: ${formData.phone}\nState: ${formData.shippingState}\nSubtotal: $${calculateSubtotal().toLocaleString()} USD`)}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="bg-[#0078d4] hover:bg-[#106ebe] text-white py-2 px-2.5 rounded-lg text-[10px] font-bold flex items-center justify-center space-x-1 transition-all"
+                          >
+                            <span>Open Outlook</span>
+                          </a>
+                        </div>
                       </div>
                     </div>
 
