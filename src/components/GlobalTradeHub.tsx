@@ -491,7 +491,7 @@ export default function GlobalTradeHub({ onBack }: GlobalTradeHubProps) {
         "That fits our logistical capacity perfectly. We operate custom freight lanes from our warehouse. Shall we prepare the formal RFQ contract draft?",
         "Our supply chain is fully FSC/PEFC certified, and we can guarantee clearance within 14 business days. I will send over our certified cargo specifications sheet.",
         "We can agree to those price parameters for any contract term over 6 months. Let us schedule a direct intermodal routing session with our legal representatives.",
-        "That is acceptable under DDP / CIF terms. Let's submit a verified purchase order draft through the Roots of America secure escrow panel."
+        "That is acceptable under DDP / CIF terms. Let's submit a verified purchase order draft through the Root Of America secure escrow panel."
       ];
       const randomResponse = responses[Math.floor(Math.random() * responses.length)];
       setChatLog(prev => [...prev, { sender: 'partner', text: randomResponse, time: 'Just Now' }]);

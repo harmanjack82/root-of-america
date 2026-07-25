@@ -51,7 +51,7 @@ async function startServer() {
 
   // Health check endpoint
   app.get("/api/health", (req, res) => {
-    res.json({ status: "ok", service: "Roots of America B2B Backend" });
+    res.json({ status: "ok", service: "Root Of America B2B Backend" });
   });
 
   // Get all submitted form enquiries

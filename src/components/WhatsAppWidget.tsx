@@ -8,7 +8,7 @@ export default function WhatsAppWidget() {
 
   const phoneNumber = '447717920970';
   const formattedNumber = '+44 7717920970';
-  const message = 'Hello Roots B2B Trade Desk, I am interested in B2B sourcing support and custom enterprise solutions.';
+  const message = 'Hello Root Of America B2B Trade Desk, I am interested in B2B sourcing support and custom enterprise solutions.';
   const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
 
   const handleChatRedirect = () => {
@@ -36,7 +36,7 @@ export default function WhatsAppWidget() {
                   <span className="absolute bottom-0 right-0 h-3 w-3 bg-[#25D366] border-2 border-[#0e4a36] rounded-full animate-pulse" />
                 </div>
                 <div className="text-left">
-                  <h4 className="text-xs font-extrabold tracking-wide uppercase">Roots B2B Desk</h4>
+                  <h4 className="text-xs font-extrabold tracking-wide uppercase">Root Of America Desk</h4>
                   <p className="text-[10px] text-emerald-100 flex items-center space-x-1 mt-0.5">
                     <span className="inline-block h-1.5 w-1.5 bg-[#25D366] rounded-full" />
                     <span>Typically replies instantly</span>
@@ -55,7 +55,7 @@ export default function WhatsAppWidget() {
             <div className="p-4 bg-[#faf8f5] space-y-3">
               <div className="bg-white p-3 rounded-2xl rounded-tl-none shadow-sm border border-[#e5dfd3] text-left text-xs text-gray-700 leading-relaxed max-w-[85%]">
                 <span className="font-semibold text-[#0e4a36] block mb-0.5">Trade Officer</span>
-                Hello! Welcome to Roots B2B. How can we assist you with your bulk sourcing, web development, or logistics today?
+                Hello! Welcome to Root Of America. How can we assist you with your bulk sourcing, web development, or logistics today?
               </div>
               
               <div className="bg-emerald-50/50 border border-emerald-100 p-2.5 rounded-xl text-left text-[11px] text-emerald-800 flex items-start space-x-2">

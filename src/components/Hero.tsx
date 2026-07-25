@@ -168,7 +168,7 @@ export default function Hero({ onStartCalculator, onBrowseSourcing }: HeroProps)
             <div className="relative rounded-3xl overflow-hidden border-8 border-white shadow-2xl bg-white aspect-[16/10]">
               <img 
                 src={heroImage} 
-                alt="Roots Of America B2B Wholesale Supply Chain Logistics"
+                alt="Root Of America B2B Wholesale Supply Chain Logistics"
                 className="w-full h-full object-cover"
                 referrerPolicy="no-referrer"
               />

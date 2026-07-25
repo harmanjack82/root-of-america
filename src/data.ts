@@ -192,7 +192,7 @@ export const MOCK_ORDERS: MockPurchaseOrder[] = [
 
 export const B2B_TESTIMONIALS = [
   {
-    quote: "Roots Of America completely transformed our timber supply chain. Being a registered US corporate vendor with integrated logistics, their portal allows our procurement team to lock in volume pricing in minutes.",
+    quote: "Root Of America completely transformed our timber supply chain. Being a registered US corporate vendor with integrated logistics, their portal allows our procurement team to lock in volume pricing in minutes.",
     author: "Richard Kessler",
     position: "VP of Global Sourcing",
     company: "Heritage Furnishings Group",
@@ -206,7 +206,7 @@ export const B2B_TESTIMONIALS = [
     location: "San Antonio, TX"
   },
   {
-    quote: "Securing industrial biopolymers from Nebraska with full FDA certifications is a standard requirement for our consumer packaging division. Roots of America delivers both the scale and the regulatory confidence we demand.",
+    quote: "Securing industrial biopolymers from Nebraska with full FDA certifications is a standard requirement for our consumer packaging division. Root Of America delivers both the scale and the regulatory confidence we demand.",
     author: "Dr. Aris Vance",
     position: "Chief Sustainability Officer",
     company: "BioPack Solutions Inc.",

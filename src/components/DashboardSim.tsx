@@ -71,7 +71,7 @@ export default function DashboardSim() {
     const payload = {
       formType: 'Purchase Order / Order Simulation',
       company: buyer.companyName,
-      subject: `Roots of America Purchase Order: ${buyer.companyName} - ${selectedProduct.name}`,
+      subject: `Root Of America Purchase Order: ${buyer.companyName} - ${selectedProduct.name}`,
       message: `Product: ${selectedProduct.name}\nQuantity: ${orderQty} ${selectedProduct.unit}\nTotal Cost: $${Math.round(cost).toLocaleString()} USD\nDelivery Speed: ${selectedSpeed.toUpperCase()}`,
       details: {
         productName: selectedProduct.name,
@@ -88,7 +88,7 @@ export default function DashboardSim() {
       body: JSON.stringify(payload)
     }).catch(err => console.warn('Backend API PO submission dispatch warning:', err));
 
-    const subject = encodeURIComponent(`Roots of America Purchase Order: ${buyer.companyName}`);
+    const subject = encodeURIComponent(`Root Of America Purchase Order: ${buyer.companyName}`);
     const body = encodeURIComponent(
       `NEW PURCHASE ORDER SUBMISSION\n` +
       `-----------------------------------\n` +

@@ -84,7 +84,7 @@ export default function Navbar({
               </div>
               <div>
                 <div className="flex items-center space-x-1">
-                  <span className="font-sans font-bold tracking-tight text-xl text-[#1c2421]">ROOTS OF AMERICA</span>
+                  <span className="font-sans font-bold tracking-tight text-xl text-[#1c2421]">ROOT OF AMERICA</span>
                 </div>
                 <p className="text-[10px] font-mono text-[#0e4a36]/80 tracking-wider">REGISTERED USA ENTERPRISE</p>
               </div>

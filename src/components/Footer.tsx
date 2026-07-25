@@ -50,7 +50,7 @@ export default function Footer({ onScrollTo, setActiveView, setDisclaimerSection
               <div className="bg-white/10 p-2 rounded-lg">
                 <Building2 className="h-5 w-5 text-[#f59e0b]" />
               </div>
-              <span className="font-bold tracking-wider text-lg">ROOTS OF AMERICA</span>
+              <span className="font-bold tracking-wider text-lg">ROOT OF AMERICA</span>
             </div>
             
             <div className="space-y-3">
@@ -183,7 +183,7 @@ export default function Footer({ onScrollTo, setActiveView, setDisclaimerSection
           <div className="lg:col-span-2 text-left space-y-4">
             <h4 className="text-xs font-mono font-bold text-white uppercase tracking-widest border-b border-gray-800 pb-2">Corporate &amp; Billing</h4>
             <p className="text-xs text-gray-500 leading-relaxed">
-              Roots of America is operated and billing is handled by <strong className="text-gray-300">Tixisle LLC</strong>.
+              Root Of America is operated and billing is handled by <strong className="text-gray-300">Tixisle LLC</strong>.
             </p>
             <p className="text-[11px] text-gray-500 font-mono leading-tight">
               6300 RIVERSIDE PLAZA NW STE 100 #3037, ALBUQUERQUE, NM 87120, USA
@@ -194,7 +194,7 @@ export default function Footer({ onScrollTo, setActiveView, setDisclaimerSection
 
         {/* Lower row */}
         <div className="mt-12 pt-8 border-t border-gray-800 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs font-mono">
-          <p>© 2026 Tixisle LLC (Roots Of America). All Business rights reserved.</p>
+          <p>© 2026 Tixisle LLC (Root Of America). All Business rights reserved.</p>
           <div className="flex space-x-6 text-gray-500">
             <button 
               id="terms-of-trade-footer-btn"

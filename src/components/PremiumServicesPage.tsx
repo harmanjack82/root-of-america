@@ -126,7 +126,7 @@ export default function PremiumServicesPage({ onBack }: PremiumServicesPageProps
       company: formData.company,
       email: formData.email,
       phone: formData.phone,
-      subject: `Roots of America Premium Plan Booking [${selectedPlan.toUpperCase()}]: ${formData.company || formData.name}`,
+      subject: `Root Of America Premium Plan Booking [${selectedPlan.toUpperCase()}]: ${formData.company || formData.name}`,
       message: `Industry: ${formData.industry}\nRequirements: ${formData.message}`,
       details: {
         selectedPlan: selectedPlan,

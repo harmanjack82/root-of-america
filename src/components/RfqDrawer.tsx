@@ -81,7 +81,7 @@ export default function RfqDrawer({
       company: formData.companyName,
       email: formData.email,
       phone: formData.phone,
-      subject: `Roots of America Bulk RFQ Quote Request: ${formData.companyName}`,
+      subject: `Root Of America Bulk RFQ Quote Request: ${formData.companyName}`,
       message: `Destination State: ${formData.shippingState}\nLogistics Speed: ${formData.logisticsSpeed}\nNotes: ${formData.notes || 'None'}\n\nItems:\n${itemsSummary}`,
       details: {
         shippingState: formData.shippingState,
@@ -98,7 +98,7 @@ export default function RfqDrawer({
       body: JSON.stringify(payload)
     }).catch(err => console.warn('Backend API RFQ submission dispatch warning:', err));
 
-    const subject = encodeURIComponent(`Roots of America Bulk RFQ Quote Request: ${formData.companyName}`);
+    const subject = encodeURIComponent(`Root Of America Bulk RFQ Quote Request: ${formData.companyName}`);
     const body = encodeURIComponent(
       `NEW BULK RFQ SUBMISSION\n` +
       `-----------------------------------\n` +
@@ -417,7 +417,7 @@ export default function RfqDrawer({
                         <p className="text-[11px] font-semibold text-gray-700">Send or confirm via your webmail app:</p>
                         <div className="grid grid-cols-2 gap-2">
                           <a
-                            href={`https://mail.google.com/mail/?view=cm&fs=1&to=info@rootofamerica.com&cc=info@rootsofamerica.com&su=${encodeURIComponent(`Roots of America Bulk RFQ Quote Request: ${formData.companyName}`)}&body=${encodeURIComponent(`NEW BULK RFQ SUBMISSION\nRFQ #: ${rfqNumber}\nCompany: ${formData.companyName}\nContact: ${formData.contactName}\nEmail: ${formData.email}\nPhone: ${formData.phone}\nState: ${formData.shippingState}\nSubtotal: $${calculateSubtotal().toLocaleString()} USD`)}`}
+                            href={`https://mail.google.com/mail/?view=cm&fs=1&to=info@rootofamerica.com&cc=info@rootsofamerica.com&su=${encodeURIComponent(`Root Of America Bulk RFQ Quote Request: ${formData.companyName}`)}&body=${encodeURIComponent(`NEW BULK RFQ SUBMISSION\nRFQ #: ${rfqNumber}\nCompany: ${formData.companyName}\nContact: ${formData.contactName}\nEmail: ${formData.email}\nPhone: ${formData.phone}\nState: ${formData.shippingState}\nSubtotal: $${calculateSubtotal().toLocaleString()} USD`)}`}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="bg-[#ea4335] hover:bg-[#d93025] text-white py-2 px-2.5 rounded-lg text-[10px] font-bold flex items-center justify-center space-x-1 transition-all"
@@ -425,7 +425,7 @@ export default function RfqDrawer({
                             <span>Open Gmail</span>
                           </a>
                           <a
-                            href={`https://outlook.office.com/mail/deeplink/compose?to=info@rootofamerica.com&cc=info@rootsofamerica.com&subject=${encodeURIComponent(`Roots of America Bulk RFQ Quote Request: ${formData.companyName}`)}&body=${encodeURIComponent(`NEW BULK RFQ SUBMISSION\nRFQ #: ${rfqNumber}\nCompany: ${formData.companyName}\nContact: ${formData.contactName}\nEmail: ${formData.email}\nPhone: ${formData.phone}\nState: ${formData.shippingState}\nSubtotal: $${calculateSubtotal().toLocaleString()} USD`)}`}
+                            href={`https://outlook.office.com/mail/deeplink/compose?to=info@rootofamerica.com&cc=info@rootsofamerica.com&subject=${encodeURIComponent(`Root Of America Bulk RFQ Quote Request: ${formData.companyName}`)}&body=${encodeURIComponent(`NEW BULK RFQ SUBMISSION\nRFQ #: ${rfqNumber}\nCompany: ${formData.companyName}\nContact: ${formData.contactName}\nEmail: ${formData.email}\nPhone: ${formData.phone}\nState: ${formData.shippingState}\nSubtotal: $${calculateSubtotal().toLocaleString()} USD`)}`}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="bg-[#0078d4] hover:bg-[#106ebe] text-white py-2 px-2.5 rounded-lg text-[10px] font-bold flex items-center justify-center space-x-1 transition-all"
@@ -436,7 +436,7 @@ export default function RfqDrawer({
 
                         {/* Direct FormSubmit Web Post */}
                         <form action="https://formsubmit.co/info@rootofamerica.com" method="POST" target="_blank" className="pt-2">
-                          <input type="hidden" name="_subject" value={`Roots of America Bulk RFQ Quote Request: ${formData.companyName}`} />
+                          <input type="hidden" name="_subject" value={`Root Of America Bulk RFQ Quote Request: ${formData.companyName}`} />
                           <input type="hidden" name="_replyto" value={formData.email} />
                           <input type="hidden" name="RFQ_Number" value={rfqNumber} />
                           <input type="hidden" name="Company_Name" value={formData.companyName} />

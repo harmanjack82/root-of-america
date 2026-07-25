@@ -101,7 +101,7 @@ export default function CompliancePanel() {
                 All Enterprise Categories Served. <span className="text-red-500">Drugs and Weapons Strictly Prohibited.</span>
               </h3>
               <p className="text-sm text-gray-400 leading-relaxed max-w-3xl">
-                Roots of America operates as a universal clearinghouse for high-volume raw materials, commodities, and industrial supplies. We facilitate duty-free commercial fulfillment across literally <strong>every primary legal industrial vertical</strong> with a strict, non-negotiable interdiction on military hardware, weaponry, ammunition, and controlled pharmaceutical substances or narcotics.
+                Root Of America operates as a universal clearinghouse for high-volume raw materials, commodities, and industrial supplies. We facilitate duty-free commercial fulfillment across literally <strong>every primary legal industrial vertical</strong> with a strict, non-negotiable interdiction on military hardware, weaponry, ammunition, and controlled pharmaceutical substances or narcotics.
               </p>
               
               {/* Highlight Grid of Permitted Verticals */}

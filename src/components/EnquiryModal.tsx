@@ -51,7 +51,7 @@ export default function EnquiryModal({ isOpen, onClose, defaultCategory }: Enqui
       email: formData.email,
       phone: formData.phone,
       category: formData.category,
-      subject: `Roots of America Pop-Up Enquiry [${formData.category}]: ${formData.company || formData.name}`,
+      subject: `Root Of America Pop-Up Enquiry [${formData.category}]: ${formData.company || formData.name}`,
       message: formData.message,
       details: {
         category: formData.category,
@@ -66,7 +66,7 @@ export default function EnquiryModal({ isOpen, onClose, defaultCategory }: Enqui
       body: JSON.stringify(payload)
     }).catch(err => console.warn('Backend API submission warning:', err));
 
-    const subject = encodeURIComponent(`Roots of America Enquiry [${formData.category}]: ${formData.company || formData.name}`);
+    const subject = encodeURIComponent(`Root Of America Enquiry [${formData.category}]: ${formData.company || formData.name}`);
     const body = encodeURIComponent(
       `NEW INQUIRY SUBMISSION\n` +
       `-----------------------------------\n` +
@@ -331,8 +331,8 @@ export default function EnquiryModal({ isOpen, onClose, defaultCategory }: Enqui
                         <div className="border-t pt-3 mt-2 space-y-2 font-sans">
                           <p className="text-[11px] font-semibold text-gray-700">Choose your preferred email client to confirm dispatch:</p>
                           <div className="grid grid-cols-2 gap-2">
-                            <a
-                              href={`https://mail.google.com/mail/?view=cm&fs=1&to=info@rootofamerica.com&cc=info@rootsofamerica.com&su=${encodeURIComponent(`Roots of America Inquiry [${formData.category}]: ${formData.company || formData.name}`)}&body=${encodeURIComponent(`NEW POP-UP INQUIRY\nTicket: ${ticketNumber}\nName: ${formData.name}\nCompany: ${formData.company}\nEmail: ${formData.email}\nPhone: ${formData.phone}\nCategory: ${formData.category}\nMessage: ${formData.message}`)}`}
+                             <a
+                              href={`https://mail.google.com/mail/?view=cm&fs=1&to=info@rootofamerica.com&cc=info@rootsofamerica.com&su=${encodeURIComponent(`Root Of America Inquiry [${formData.category}]: ${formData.company || formData.name}`)}&body=${encodeURIComponent(`NEW POP-UP INQUIRY\nTicket: ${ticketNumber}\nName: ${formData.name}\nCompany: ${formData.company}\nEmail: ${formData.email}\nPhone: ${formData.phone}\nCategory: ${formData.category}\nMessage: ${formData.message}`)}`}
                               target="_blank"
                               rel="noopener noreferrer"
                               className="bg-[#ea4335] hover:bg-[#d93025] text-white py-2 px-2.5 rounded-lg text-[10px] font-bold flex items-center justify-center space-x-1 transition-all"
@@ -341,7 +341,7 @@ export default function EnquiryModal({ isOpen, onClose, defaultCategory }: Enqui
                               <span>Open Gmail</span>
                             </a>
                             <a
-                              href={`https://outlook.office.com/mail/deeplink/compose?to=info@rootofamerica.com&cc=info@rootsofamerica.com&subject=${encodeURIComponent(`Roots of America Inquiry [${formData.category}]: ${formData.company || formData.name}`)}&body=${encodeURIComponent(`NEW POP-UP INQUIRY\nTicket: ${ticketNumber}\nName: ${formData.name}\nCompany: ${formData.company}\nEmail: ${formData.email}\nPhone: ${formData.phone}\nCategory: ${formData.category}\nMessage: ${formData.message}`)}`}
+                              href={`https://outlook.office.com/mail/deeplink/compose?to=info@rootofamerica.com&cc=info@rootsofamerica.com&subject=${encodeURIComponent(`Root Of America Inquiry [${formData.category}]: ${formData.company || formData.name}`)}&body=${encodeURIComponent(`NEW POP-UP INQUIRY\nTicket: ${ticketNumber}\nName: ${formData.name}\nCompany: ${formData.company}\nEmail: ${formData.email}\nPhone: ${formData.phone}\nCategory: ${formData.category}\nMessage: ${formData.message}`)}`}
                               target="_blank"
                               rel="noopener noreferrer"
                               className="bg-[#0078d4] hover:bg-[#106ebe] text-white py-2 px-2.5 rounded-lg text-[10px] font-bold flex items-center justify-center space-x-1 transition-all"
@@ -353,7 +353,7 @@ export default function EnquiryModal({ isOpen, onClose, defaultCategory }: Enqui
 
                           <div className="flex items-center space-x-2 pt-1">
                             <a
-                              href={`mailto:info@rootofamerica.com?cc=info@rootsofamerica.com&subject=${encodeURIComponent(`Roots of America Inquiry [${formData.category}]: ${formData.company || formData.name}`)}&body=${encodeURIComponent(`NEW POP-UP INQUIRY\nTicket: ${ticketNumber}\nName: ${formData.name}\nCompany: ${formData.company}\nEmail: ${formData.email}\nPhone: ${formData.phone}\nCategory: ${formData.category}\nMessage: ${formData.message}`)}`}
+                              href={`mailto:info@rootofamerica.com?cc=info@rootsofamerica.com&subject=${encodeURIComponent(`Root Of America Inquiry [${formData.category}]: ${formData.company || formData.name}`)}&body=${encodeURIComponent(`NEW POP-UP INQUIRY\nTicket: ${ticketNumber}\nName: ${formData.name}\nCompany: ${formData.company}\nEmail: ${formData.email}\nPhone: ${formData.phone}\nCategory: ${formData.category}\nMessage: ${formData.message}`)}`}
                               className="flex-1 bg-[#0e4a36] hover:bg-[#0b3c2a] text-white py-2 px-2 rounded-lg text-[10px] font-bold flex items-center justify-center space-x-1 transition-all"
                             >
                               <Mail className="h-3 w-3" />
@@ -376,7 +376,7 @@ export default function EnquiryModal({ isOpen, onClose, defaultCategory }: Enqui
 
                           {/* FormSubmit direct submission option */}
                           <form action="https://formsubmit.co/info@rootofamerica.com" method="POST" target="_blank" className="pt-2">
-                            <input type="hidden" name="_subject" value={`Roots of America Pop-Up Enquiry [${formData.category}]: ${formData.company || formData.name}`} />
+                            <input type="hidden" name="_subject" value={`Root Of America Pop-Up Enquiry [${formData.category}]: ${formData.company || formData.name}`} />
                             <input type="hidden" name="_replyto" value={formData.email} />
                             <input type="hidden" name="Ticket_Number" value={ticketNumber} />
                             <input type="hidden" name="Name" value={formData.name} />
