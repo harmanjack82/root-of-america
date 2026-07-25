@@ -239,6 +239,7 @@ export default function EnquiryModal({ isOpen, onClose, defaultCategory }: Enqui
                           onChange={handleInputChange}
                           className="w-full bg-white border border-[#e5dfd3] focus:border-[#0e4a36] rounded-xl px-3 py-2 text-xs outline-none text-[#1c2421]"
                         >
+                          <option value="Corporate Financier">Corporate Financier / Trade Credit</option>
                           <option value="Sourcing Support">Wholesale Sourcing Support</option>
                           <option value="eCommerce Development">eCommerce Development</option>
                           <option value="Web Development">Web Development</option>

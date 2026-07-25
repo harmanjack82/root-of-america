@@ -35,6 +35,7 @@ import RefundPolicyPage from './components/RefundPolicyPage';
 import PrivacyPolicyPage from './components/PrivacyPolicyPage';
 import TermsOfTradePage from './components/TermsOfTradePage';
 import PremiumServicesPage from './components/PremiumServicesPage';
+import CorporateFinancierPage from './components/CorporateFinancierPage';
 import bannerImg from './assets/images/b2b_supply_chain_banner_1783159950805.jpg';
 
 import { Product, RfqItem } from './types';
@@ -46,7 +47,7 @@ export default function App() {
   const [isEnquiryOpen, setIsEnquiryOpen] = useState<boolean>(false);
   const [isEnquiriesPortalOpen, setIsEnquiriesPortalOpen] = useState<boolean>(false);
   const [enquiryCategory, setEnquiryCategory] = useState<string | undefined>(undefined);
-  const [activeView, setActiveView] = useState<'landing' | 'dashboard' | 'trade-desk' | 'about-us' | 'disclaimer' | 'refund-policy' | 'privacy-policy' | 'terms-of-trade' | 'premium-services'>('landing');
+  const [activeView, setActiveView] = useState<'landing' | 'dashboard' | 'trade-desk' | 'about-us' | 'disclaimer' | 'refund-policy' | 'privacy-policy' | 'terms-of-trade' | 'premium-services' | 'corporate-financier'>('landing');
   const [disclaimerSection, setDisclaimerSection] = useState<string | undefined>(undefined);
   const [showScrollTop, setShowScrollTop] = useState<boolean>(false);
   const [currentTestimonialIdx, setCurrentTestimonialIdx] = useState<number>(0);
@@ -138,6 +139,7 @@ export default function App() {
         activeView={activeView}
         setActiveView={setActiveView}
         onScrollTo={handleScrollTo}
+        onOpenCorporateFinancier={() => setActiveView('corporate-financier')}
       />
 
       {/* Main content switchboard */}
@@ -392,6 +394,22 @@ export default function App() {
             transition={{ duration: 0.3 }}
           >
             <PremiumServicesPage onBack={() => setActiveView('landing')} />
+          </motion.div>
+        ) : activeView === 'corporate-financier' ? (
+          <motion.div
+            key="corporate-financier-view"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            <CorporateFinancierPage 
+              onOpenEnquiry={(category) => {
+                setEnquiryCategory(category || 'Corporate Financier');
+                setIsEnquiryOpen(true);
+              }}
+              onBackToHome={() => setActiveView('landing')} 
+            />
           </motion.div>
         ) : (
           <motion.div

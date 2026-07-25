@@ -105,17 +105,6 @@ export default function Footer({ onScrollTo, setActiveView, setDisclaimerSection
           <div className="lg:col-span-2 text-left space-y-4">
             <h4 className="text-xs font-mono font-bold text-white uppercase tracking-widest border-b border-gray-800 pb-2">Quick Links</h4>
             <ul className="space-y-2.5 text-sm">
-              {onOpenEnquiriesPortal && (
-                <li>
-                  <button 
-                    onClick={onOpenEnquiriesPortal}
-                    className="text-amber-400 hover:text-amber-300 font-bold flex items-center space-x-1 transition-colors cursor-pointer"
-                  >
-                    <Mail className="h-3.5 w-3.5" />
-                    <span>Inquiries Inbox</span>
-                  </button>
-                </li>
-              )}
               <li>
                 <button onClick={() => setActiveView('about-us')} className="hover:text-white transition-colors cursor-pointer">
                   About Us

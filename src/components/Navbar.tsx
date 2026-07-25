@@ -24,9 +24,10 @@ import { RfqItem } from '../types';
 interface NavbarProps {
   rfqCount: number;
   onOpenRfq: () => void;
-  activeView: 'landing' | 'dashboard' | 'trade-desk' | 'about-us' | 'disclaimer' | 'refund-policy' | 'privacy-policy' | 'terms-of-trade' | 'premium-services';
-  setActiveView: (view: 'landing' | 'dashboard' | 'trade-desk' | 'about-us' | 'disclaimer' | 'refund-policy' | 'privacy-policy' | 'terms-of-trade' | 'premium-services') => void;
+  activeView: 'landing' | 'dashboard' | 'trade-desk' | 'about-us' | 'disclaimer' | 'refund-policy' | 'privacy-policy' | 'terms-of-trade' | 'premium-services' | 'corporate-financier';
+  setActiveView: (view: 'landing' | 'dashboard' | 'trade-desk' | 'about-us' | 'disclaimer' | 'refund-policy' | 'privacy-policy' | 'terms-of-trade' | 'premium-services' | 'corporate-financier') => void;
   onScrollTo: (elementId: string) => void;
+  onOpenCorporateFinancier?: () => void;
 }
 
 export default function Navbar({ 
@@ -34,7 +35,8 @@ export default function Navbar({
   onOpenRfq, 
   activeView, 
   setActiveView,
-  onScrollTo
+  onScrollTo,
+  onOpenCorporateFinancier
 }: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
@@ -94,7 +96,20 @@ export default function Navbar({
           </div>
 
           {/* Action Button Controls */}
-          <div className="hidden md:flex items-center space-x-4">
+          <div className="hidden md:flex items-center space-x-3">
+            <button
+              id="nav-corporate-financier-btn"
+              onClick={onOpenCorporateFinancier}
+              className={`px-4 py-2.5 rounded-xl font-sans font-semibold text-sm transition-all flex items-center space-x-1.5 cursor-pointer shadow-sm border ${
+                activeView === 'corporate-financier'
+                  ? 'bg-amber-500 text-gray-950 border-amber-400 ring-2 ring-amber-300/60'
+                  : 'bg-[#0e4a36] hover:bg-[#0b3c2a] text-white border-emerald-700/50'
+              }`}
+            >
+              <Briefcase className={`h-4 w-4 ${activeView === 'corporate-financier' ? 'text-gray-950' : 'text-amber-400'}`} />
+              <span>Corporate financier</span>
+            </button>
+
             {(activeView === 'landing' || activeView === 'dashboard') ? (
               <button
                 onClick={() => setActiveView('trade-desk')}
@@ -196,6 +211,13 @@ export default function Navbar({
                   >
                     <ShieldCheck className="h-4 w-4 text-[#0e4a36]" />
                     <span>Cargo Compliance</span>
+                  </button>
+                  <button 
+                    onClick={() => { setIsOpen(false); if (onOpenCorporateFinancier) onOpenCorporateFinancier(); }} 
+                    className="block w-full text-left px-3 py-2 text-base font-medium text-white bg-[#0e4a36] hover:bg-[#0b3c2a] rounded-xl flex items-center space-x-1.5 shadow-xs"
+                  >
+                    <Briefcase className="h-4 w-4 text-amber-400" />
+                    <span>Corporate financier</span>
                   </button>
                   <button 
                     onClick={() => { setIsOpen(false); setActiveView('premium-services'); }} 
