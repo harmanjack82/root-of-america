@@ -63,9 +63,9 @@ export default function PremiumServicesPage({ onBack }: PremiumServicesPageProps
   const [brokerFeeRate, setBrokerFeeRate] = useState<number>(3.5); // Default 3.5% standard broker commission
 
   // Calculated pricing based on selected interactive add-ons
-  const standardPrice = 1200 + (standardAddons.customs ? 450 : 0) + (standardAddons.audit ? 300 : 0);
-  const goldPrice = 2999 + (goldAddons.logistics ? 600 : 0) + (goldAddons.translation ? 450 : 0) + (goldAddons.speedMatch ? 550 : 0);
-  const elitePrice = 5499 + (eliteAddons.booth ? 1200 : 0) + (eliteAddons.api ? 750 : 0) + (eliteAddons.legal ? 500 : 0);
+  const standardPrice = 400 + (standardAddons.customs ? 450 : 0) + (standardAddons.audit ? 300 : 0);
+  const goldPrice = 600 + (goldAddons.logistics ? 600 : 0) + (goldAddons.translation ? 450 : 0) + (goldAddons.speedMatch ? 550 : 0);
+  const elitePrice = 1000 + (eliteAddons.booth ? 1200 : 0) + (eliteAddons.api ? 750 : 0) + (eliteAddons.legal ? 500 : 0);
 
   // Interactive micro-service utilities states
   const [activeLang, setActiveLang] = useState<'ES' | 'ZH' | 'DE' | 'PT'>('ES');
@@ -355,7 +355,7 @@ export default function PremiumServicesPage({ onBack }: PremiumServicesPageProps
                         <span className="text-sm text-gray-500 font-sans"> / year flat rate</span>
                       </div>
                       <div className="text-[10px] text-[#0e4a36] font-mono">
-                        Base: $1,200/yr {standardAddons.customs || standardAddons.audit ? `+ selected add-ons` : ''}
+                        Base: $400/yr {standardAddons.customs || standardAddons.audit ? `+ selected add-ons` : ''}
                       </div>
 
                       {/* Interactive Add-ons board */}
@@ -628,7 +628,7 @@ export default function PremiumServicesPage({ onBack }: PremiumServicesPageProps
                         <span className="text-sm text-gray-500 font-sans"> / year flat rate</span>
                       </div>
                       <div className="text-[10px] text-amber-600 font-mono">
-                        Base: $2,999/yr {goldAddons.logistics || goldAddons.translation || goldAddons.speedMatch ? `+ selected add-ons` : ''}
+                        Base: $600/yr {goldAddons.logistics || goldAddons.translation || goldAddons.speedMatch ? `+ selected add-ons` : ''}
                       </div>
 
                       {/* Interactive Add-ons board */}
@@ -883,7 +883,7 @@ export default function PremiumServicesPage({ onBack }: PremiumServicesPageProps
                         <span className="text-sm text-gray-500 font-sans"> / year flat rate</span>
                       </div>
                       <div className="text-[10px] text-emerald-600 font-mono">
-                        Base: $5,499/yr {eliteAddons.booth || eliteAddons.api || eliteAddons.legal ? `+ selected add-ons` : ''}
+                        Base: $1,000/yr {eliteAddons.booth || eliteAddons.api || eliteAddons.legal ? `+ selected add-ons` : ''}
                       </div>
 
                       {/* Interactive Add-ons board */}
@@ -1788,9 +1788,9 @@ export default function PremiumServicesPage({ onBack }: PremiumServicesPageProps
                         onChange={(e: any) => setSelectedPlan(e.target.value)}
                         className="w-full bg-white border border-[#e5dfd3] text-[#1c2421] px-4 py-2.5 rounded-xl text-xs font-bold focus:outline-none focus:border-[#0e4a36]"
                       >
-                        <option value="standard">Standard Verified Supplier ($1,200/yr)</option>
-                        <option value="gold">Gold Premium VIP ($2,999/yr)</option>
-                        <option value="elite">Enterprise Elite ($5,499/yr)</option>
+                        <option value="standard">Standard Verified Supplier ($400/yr)</option>
+                        <option value="gold">Gold Premium VIP ($600/yr)</option>
+                        <option value="elite">Enterprise Elite ($1,000/yr)</option>
                       </select>
                     </div>
 
