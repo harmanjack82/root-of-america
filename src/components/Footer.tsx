@@ -88,7 +88,7 @@ export default function Footer({ onScrollTo, setActiveView, setDisclaimerSection
               </div>
               <div className="flex items-center space-x-2">
                 <Phone className="h-4 w-4 text-amber-500 shrink-0" />
-                <span>+1 (800) 555-ROA-B2B</span>
+                <span>+1 (9176) (957544)</span>
               </div>
               <div className="flex items-center space-x-2">
                 <Mail className="h-4 w-4 text-amber-500 shrink-0" />
