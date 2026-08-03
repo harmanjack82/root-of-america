@@ -102,6 +102,9 @@ const CATEGORY_PRODUCTS = {
   Agriculture: [
     { name: 'Hard Red Winter Wheat', unit: 'Metric Tons (MT)', priceRange: [340, 395], specs: ['Minimum 13.5% Protein', 'Low Moisture <12%', 'High Falling Number'], grade: 'Grade No. 1 HRW' },
     { name: 'Non-GMO Feed Soybeans', unit: 'Metric Tons (MT)', priceRange: [480, 540], specs: ['Moisture Max 13%', 'Oil Content Min 18.5%', 'Foreign Matter Max 1%'], grade: 'US No. 2 Yellow' },
+    { name: 'Refined RBD Palm Oil', unit: 'Metric Tons (MT)', priceRange: [850, 1100], specs: ['RSPO Certified Sustainable', 'Free Fatty Acids <0.1%', 'Pure Refined Grade'], grade: 'RBD Food Grade' },
+    { name: 'Organic Fresh Medjool Dates', unit: 'Metric Tons (MT)', priceRange: [2800, 3600], specs: ['USDA Organic Certified', 'Jumbo Grade 20-25g/date', 'Cold Chain Refrigerated'], grade: 'A-Grade Fresh Medjool' },
+    { name: 'Dutch Alkalized Cocoa Powder', unit: 'Metric Tons (MT)', priceRange: [3200, 4100], specs: ['Fat Content 10-12%', 'Fine Mesh 99.5% 200 Mesh', 'ISO 22000 Certified'], grade: 'Premium Dutch Alkalized' },
     { name: 'Organic Yellow Field Peas', unit: 'Metric Tons (MT)', priceRange: [410, 470], specs: ['100% USDA Organic Certified', 'Phytosanitary Cleaned', 'Excellent Sprouting Rate'], grade: 'Premium Food Grade' },
     { name: 'High-Energy Malting Barley', unit: 'Metric Tons (MT)', priceRange: [310, 360], specs: ['Plump Kernels >95%', 'Protein Content 10-11%', 'Germination Capacity 98%'], grade: 'Two-Row Malting Grade' },
     { name: 'Organic Red Sorghum Grains', unit: 'Metric Tons (MT)', priceRange: [260, 310], specs: ['Tannin Level <0.3%', 'Non-GMO Project Verified', 'De-hulled Clean Grain'], grade: 'Grade No. 1 Sorghum' },
@@ -133,6 +136,9 @@ const CATEGORY_PRODUCTS = {
   ],
   'Food & Beverages': [
     { name: 'Single-Origin Arabica Coffee Beans', unit: 'Metric Tons (MT)', priceRange: [4200, 5100], specs: ['Strictly High Grown (SHG)', 'SCA Score 84+ Grade', 'Direct Trade Sustainable Sourced'], grade: 'Specialty Grade' },
+    { name: 'Refined RBD Palm Oil', unit: 'Metric Tons (MT)', priceRange: [850, 1100], specs: ['RSPO Certified Sustainable', 'Free Fatty Acids <0.1%', 'Pure Refined Grade'], grade: 'RBD Food Grade' },
+    { name: 'Organic Fresh Medjool Dates', unit: 'Metric Tons (MT)', priceRange: [2800, 3600], specs: ['USDA Organic Certified', 'Jumbo Grade 20-25g/date', 'Cold Chain Refrigerated'], grade: 'A-Grade Fresh Medjool' },
+    { name: 'Dutch Alkalized Cocoa Powder', unit: 'Metric Tons (MT)', priceRange: [3200, 4100], specs: ['Fat Content 10-12%', 'Fine Mesh 99.5% 200 Mesh', 'ISO 22000 Certified'], grade: 'Premium Dutch Alkalized' },
     { name: 'Extra Virgin Cold-Pressed Olive Oil', unit: 'Liters', priceRange: [4.80, 6.20], specs: ['Acidity Level < 0.3%', 'First Cold Extraction', 'Protected Geographical Indication'], grade: 'Premium Culinary' },
     { name: 'Organic Pure Canadian Maple Syrup', unit: 'Liters', priceRange: [11.50, 14.00], specs: ['100% Pure Grade A Amber', 'No Added Sugar/Additives', 'Fully Traceable Family Farms'], grade: 'Grade A Amber' },
     { name: 'Bulk Organic Matcha Green Tea Powder', unit: 'KG', priceRange: [22.00, 35.00], specs: ['First-Harvest Ceremonial', 'Stone-Ground Nishio Origin', 'Radiation Tested Safe'], grade: 'Ceremonial AAA' },
@@ -267,6 +273,108 @@ function generate8576TradeLeads(): GlobalTradeRequirement[] {
         product.specs[0],
         product.specs[1],
         `${countryObj.region} Custom Inspector Certified`
+      ]
+    });
+  }
+
+  // Append 35 leads of Palm oil
+  for (let i = 1; i <= 35; i++) {
+    const isSeller = (i % 4 === 0);
+    const countryObj = COUNTRIES_POOL[(i * 7) % COUNTRIES_POOL.length];
+    const prefix = COMPANY_PREFIXES[(i * 13) % COMPANY_PREFIXES.length];
+    const suffix = COMPANY_SUFFIXES[(i * 17) % COMPANY_SUFFIXES.length];
+    const itemNames = ['Refined RBD Palm Oil', 'Sustainable Crude Palm Oil (CPO)', 'Premium Red Palm Olein Bulk'];
+    const itemName = itemNames[i % itemNames.length];
+    const volume = Math.round((200 + ((i * 180) % 4800)) / 10) * 10;
+    const pricePerUnit = 860 + ((i * 14) % 240);
+    const incotermsList: ('FOB' | 'CIF' | 'DDP' | 'EXW')[] = ['CIF', 'FOB', 'DDP', 'EXW'];
+
+    results.push({
+      id: `palm-oil-lead-${i}`,
+      type: isSeller ? 'seller' : 'buyer',
+      companyName: `${prefix} ${suffix}`,
+      country: countryObj.name,
+      flag: countryObj.flag,
+      productCategory: 'Agriculture',
+      itemName,
+      volume,
+      unit: 'Metric Tons (MT)',
+      pricePerUnit,
+      incoterms: incotermsList[i % 4],
+      preferredPort: countryObj.port,
+      purityGrade: 'RBD Food Grade / RSPO Certified',
+      specs: [
+        'RSPO Certified Sustainable Palm Oil',
+        'Free Fatty Acids (FFA) < 0.1%',
+        'HACCP & ISO 22000 Certified Bulk Shipment'
+      ]
+    });
+  }
+
+  // Append 47 leads of Fresh Dates
+  for (let i = 1; i <= 47; i++) {
+    const isSeller = (i % 5 === 0);
+    const countryObj = COUNTRIES_POOL[(i * 9) % COUNTRIES_POOL.length];
+    const prefix = COMPANY_PREFIXES[(i * 11) % COMPANY_PREFIXES.length];
+    const suffix = COMPANY_SUFFIXES[(i * 19) % COMPANY_SUFFIXES.length];
+    const itemNames = ['Organic Fresh Medjool Dates', 'Premium Fresh Deglet Noor Dates', 'Fresh Royal Ajwa Dates'];
+    const itemName = itemNames[i % itemNames.length];
+    const volume = Math.round((20 + ((i * 35) % 480)) / 5) * 5;
+    const pricePerUnit = 2750 + ((i * 38) % 1050);
+    const incotermsList: ('FOB' | 'CIF' | 'DDP' | 'EXW')[] = ['CIF', 'FOB', 'DDP', 'EXW'];
+
+    results.push({
+      id: `fresh-dates-lead-${i}`,
+      type: isSeller ? 'seller' : 'buyer',
+      companyName: `${prefix} ${suffix}`,
+      country: countryObj.name,
+      flag: countryObj.flag,
+      productCategory: 'Food & Beverages',
+      itemName,
+      volume,
+      unit: 'Metric Tons (MT)',
+      pricePerUnit,
+      incoterms: incotermsList[i % 4],
+      preferredPort: countryObj.port,
+      purityGrade: 'A-Grade Fresh Medjool',
+      specs: [
+        'USDA Organic & Phytosanitary Certified',
+        'Jumbo Grade (20-25g per date)',
+        'Temperature-Controlled Cold Chain Transport'
+      ]
+    });
+  }
+
+  // Append 39 leads of Cocoa Powder
+  for (let i = 1; i <= 39; i++) {
+    const isSeller = (i % 4 === 0);
+    const countryObj = COUNTRIES_POOL[(i * 11) % COUNTRIES_POOL.length];
+    const prefix = COMPANY_PREFIXES[(i * 15) % COMPANY_PREFIXES.length];
+    const suffix = COMPANY_SUFFIXES[(i * 21) % COMPANY_SUFFIXES.length];
+    const itemNames = ['Dutch Alkalized Cocoa Powder', 'Natural Organic Cocoa Powder', 'High-Fat Premium Cocoa Powder'];
+    const itemName = itemNames[i % itemNames.length];
+    const volume = Math.round((25 + ((i * 40) % 780)) / 5) * 5;
+    const pricePerUnit = 3250 + ((i * 48) % 920);
+    const incotermsList: ('FOB' | 'CIF' | 'DDP' | 'EXW')[] = ['CIF', 'FOB', 'DDP', 'EXW'];
+
+    results.push({
+      id: `cocoa-powder-lead-${i}`,
+      type: isSeller ? 'seller' : 'buyer',
+      companyName: `${prefix} ${suffix}`,
+      country: countryObj.name,
+      flag: countryObj.flag,
+      productCategory: 'Food & Beverages',
+      itemName,
+      volume,
+      unit: 'Metric Tons (MT)',
+      pricePerUnit,
+      incoterms: incotermsList[i % 4],
+      preferredPort: countryObj.port,
+      purityGrade: 'Dutch Alkalized 10-12% Fat',
+      specs: [
+        '10-12% Natural Cocoa Fat Content',
+        '99.5% Fine Mesh 200 Sieve Pass Rate',
+        'Halal, Kosher & ISO 22000 Certified'
       ]
     });
   }
@@ -731,26 +839,6 @@ export default function GlobalTradeHub({ onBack }: GlobalTradeHubProps) {
         <div className="bg-[#faf8f5] border border-[#e5dfd3] rounded-2xl p-5 mt-8 shadow-sm space-y-4">
           <div className="flex flex-col lg:flex-row justify-between gap-4">
             
-            {/* Search Input */}
-            <div className="relative flex-1">
-              <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
-              <input
-                type="text"
-                placeholder="Search products, companies, countries, ports (e.g. Douglas Fir, Hamburg, India)..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-11 pr-4 py-3.5 bg-white border border-[#e5dfd3] rounded-xl font-sans text-sm text-[#1c2421] placeholder-gray-400 focus:outline-none focus:border-[#0e4a36] shadow-sm transition-all"
-              />
-              {searchQuery && (
-                <button 
-                  onClick={() => setSearchQuery('')}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 text-xs font-mono text-gray-400 hover:text-[#1c2421] bg-gray-100 hover:bg-gray-200 px-2 py-0.5 rounded"
-                >
-                  Clear
-                </button>
-              )}
-            </div>
-
             {/* Filter Toggle Buttons */}
             <div className="flex flex-wrap items-center gap-2">
               <button
